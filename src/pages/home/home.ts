@@ -21,7 +21,6 @@ export class HomePage {
   foods: any;
   rest: any;
   location: any;
-<<<<<<< HEAD
   loc: any;
   constructor(public navCtrl: NavController, public storage: Storage, public navParams: NavParams, public apiProvider: ApiProvider) {
     // this.getRest();
@@ -30,14 +29,6 @@ export class HomePage {
       console.log(d);
       this.loc =d.locality
       this.location = d.locality + "," + d.administrativeArea;
-=======
-  constructor(public navCtrl: NavController,public storage :Storage,public navParams : NavParams, public apiProvider: ApiProvider) {
-    // this.getRest();
-
-    this.storage.get("location").then(d=>{
-      console.log(d);
-      this.location = d.locality+","+d.administrativeArea;
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
     })
     this.images = ["../../assets/imgs/rst1.jpg",
       "../../assets/imgs/rst2.jpg",
@@ -49,34 +40,21 @@ export class HomePage {
     // })
     this.data = [
       {
-<<<<<<< HEAD
         type_id: 1,
-=======
-        type_id:1,
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
         name: "Street Food",
         image: "../../assets/imgs/street_food.jpg"
       },
       {
-<<<<<<< HEAD
         type_id: 2,
-=======
-        type_id:2,
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
         name: "Home Food",
         image: "../../assets/imgs/home_food.jpg"
       },
       {
-<<<<<<< HEAD
         type_id: 3,
-=======
-        type_id:3,
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
         name: "Resturant Food",
         image: "../../assets/imgs/pizza.png"
       },
       {
-<<<<<<< HEAD
         type_id: 4,
         name: "Grossary",
         image: "../../assets/imgs/fruits.jpg"
@@ -92,71 +70,6 @@ export class HomePage {
       console.log(this.foods)
     })
   }
-=======
-        type_id:4, 
-        name: "Grossary",
-        image: "../../assets/imgs/fruits.jpg"
-      }]
-      this.getRest()
-
-      // this.rest = [{
-      //   restname: "Rasikas",
-      //   image: "../../assets/imgs/rasikas.jpg"
-      // },
-      // {
-      //   restname: "KFC",
-      //   image: "../../assets/imgs/kfc.jpg"
-      // },
-      // {
-      //   restname: "Aanandas",
-      //   image: "../../assets/imgs/aanandas.jpg"
-      // },
-      // {
-      //   restname : "Star Briyani",
-      //   image: "../../assets/imgs/star_briyani.jpg"
-      // },
-      // {
-      //   restname: "Ponram",
-      //   image: "../../assets/imgs/ponram.jpg"
-      // }]
-      this.foods = [{
-        name: "Pani Poori",
-        image: "../../assets/imgs/pani_poori.jpg",
-        price: "Rs.20/qty",
-        qty: "100"
-      },
-      {
-        name: "Masala Poori",
-        image: "../../assets/imgs/masal_poori.jpg",
-        price: "Rs.25/qty",
-        qty: "100"
-      },
-      {
-        name: "Idly",
-        image: "../../assets/imgs/idly.jpg",
-        price: "Rs.10",
-        qty: "250"
-      },
-      {
-        name: "Poori",
-        image: "../../assets/imgs/poori.jpg",
-        price: "Rs.25",
-        qty: "100"
-      },
-      {
-        name: "Chapathi",
-        image: "../../assets/imgs/chappathi.jpg",
-        price: "Rs.20",
-        qty: "100"
-      },
-      {
-        name: "Briyani",
-        image: "../../assets/imgs/briyani.jpg",
-        price: "Rs.90",
-        qty: "50"
-      }]
-    }
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 
   slideData = [{ image: "../../assets/imgs/banner1.jpg" }, { image: "../../assets/imgs/banner2.jpg" }, { image: "../../assets/imgs/banner3.jpg" }];
   profile() {
@@ -173,7 +86,6 @@ export class HomePage {
     this.apiProvider.getData('list_resturant.php').then(d => {
       this.results = d;
       this.rest = this.results.data
-<<<<<<< HEAD
       console.log(this.data);
     })
   }
@@ -189,22 +101,5 @@ export class HomePage {
   viewRestFood(rest) {
     console.log(rest)
     this.navCtrl.push(FoodViewPage, { id: rest.id })
-=======
-      // console.log(this.data);
-    })
-  }
-  orderNow(result){
-    this.presentPopOver(result)
-  }
-  presentPopOver(result) {  
-    console.log(result);
-    this.navCtrl.push(OrderPopoverPage , {"result" : result})
-    // let popOver = this.popOverCtrl.create(OrderPopoverPage, { "result": result })
-    // popOver.present();
-  }
-  viewRestFood(rest){
-    console.log(rest)
-    this.navCtrl.push(FoodViewPage , {id: rest.id})
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
   }
 }

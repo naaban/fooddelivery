@@ -3,10 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { LoginPage } from '../login/login';
 import { ApiProvider } from '../../providers/api/api';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-<<<<<<< HEAD
 import {Storage} from '@ionic/storage'
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 
 /**
  * Generated class for the RegisterPage page.
@@ -25,12 +22,8 @@ export class RegisterPage {
   login: any;
   params: FormGroup;
   result: any;
-<<<<<<< HEAD
   location: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public apiProvider: ApiProvider, public formBuilder: FormBuilder,public storage : Storage ) {
-=======
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public apiProvider: ApiProvider, public formBuilder: FormBuilder) {
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
     this.params = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
       pass: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(30)])],
@@ -38,13 +31,10 @@ export class RegisterPage {
       confirm: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(30)])],
       fullname: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*'), Validators.minLength(8), Validators.maxLength(30)])]
     })
-<<<<<<< HEAD
     this.storage.get("location").then(d=>{
       this.location = d;
     })
   
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
@@ -105,10 +95,6 @@ export class RegisterPage {
         else if (this.login == 'resturant') {
           let data = new FormData();
           data.append('role', this.login)
-<<<<<<< HEAD
-=======
-          console.log(this.login)
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
           data.append('mobile', this.params.value.mobile)
           data.append('name', this.params.value.fullname)
           data.append('email', this.params.value.username)

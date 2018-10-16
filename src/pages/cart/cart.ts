@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-<<<<<<< HEAD
 import {Storage} from '@ionic/storage'
 import { ApiProvider } from '../../providers/api/api';
 import { OrderViewPage } from '../order-view/order-view';
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 
 /**
  * Generated class for the CartPage page.
@@ -22,13 +19,9 @@ import { OrderViewPage } from '../order-view/order-view';
 export class CartPage {
 
   results: any;
-<<<<<<< HEAD
   user_det: any;
   data: any;
   constructor(public navCtrl: NavController,public apiProvider : ApiProvider, public navParams: NavParams, public storage : Storage) {
-=======
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
     this.results = [{
       image : "../../assets/imgs/burger.jpg",
       name : "Burger",
@@ -42,20 +35,16 @@ export class CartPage {
       status: "Will reach you in 5 mins"
      }
     ]
-<<<<<<< HEAD
     
     this.getOrders();
 
   
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
   }
 
-<<<<<<< HEAD
   getDetails() {
 
   }
@@ -84,6 +73,4 @@ export class CartPage {
     this.navCtrl.push(OrderViewPage , {"order" : result})
   }
 
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 }

@@ -5,11 +5,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AddFoodPage } from '../add-food/add-food';
 import { AdminPopoverPage } from '../admin-popover/admin-popover';
 import { ApiProvider } from '../../providers/api/api';
-<<<<<<< HEAD
 import { Storage } from '@ionic/storage'
-=======
-import {Storage } from '@ionic/storage'
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 import { AdminOrderlistPage } from '../admin-orderlist/admin-orderlist';
 
 /**
@@ -29,11 +25,8 @@ export class AdminHomePage {
   base64Image: any;
   productType: any;
   data: any;
-<<<<<<< HEAD
   location: any;
   user_det : any;
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
   resturant = {
     name: "",
     foods: [{
@@ -47,7 +40,6 @@ export class AdminHomePage {
     }]
   }
   results: any;
-<<<<<<< HEAD
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public camera: Camera, public popOverCtrl: PopoverController, public actionSheetCtrl: ActionSheetController, public apiProvider: ApiProvider, public storage: Storage) {
     // this.getProduct()
     this.data = [{
@@ -60,19 +52,6 @@ export class AdminHomePage {
     }]
     this.resturant.name = "Rasikas"
     this.user_det = this.storage.get("user_det");
-=======
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public camera: Camera, public popOverCtrl: PopoverController, public actionSheetCtrl: ActionSheetController, public apiProvider: ApiProvider,public storage : Storage) {
-   // this.getProduct()
-   this.data=[{
-     name:"Apple",
-     image:"../../assets/imgs/apple.jpg"
-   },
-   {
-  name:"Grapes",
-  image: "../../assets/imgs/graps.jpg"
-   }]
-    this.resturant.name = "Rasikas"
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
   }
   addFood() {
     this.navCtrl.push(AddFoodPage)
@@ -116,7 +95,6 @@ export class AdminHomePage {
     });
     actionSheet.present();
   }
-<<<<<<< HEAD
   
   presentPopOver(event) {
     console.log(event);
@@ -128,29 +106,13 @@ export class AdminHomePage {
     let admin_id = new FormData()
     admin_id.append('admin_id', "1");
     this.apiProvider.postData(admin_id, 'list_product.php').then(d => {
-=======
- presentPopOver(event) {
-    console.log(event);
-    let popOver = this.popOverCtrl.create(AdminPopoverPage, { "event": event })
-    popOver.present();
-  } 
-
-  getProduct() {
-    let admin_id = new FormData()
-    admin_id.append('admin_id' , "1");
-      this.apiProvider.postData(admin_id, 'list_product.php').then(d => {
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
       this.results = d
       console.log(this.results);
       this.data = this.results.data;
     })
   }
 
-<<<<<<< HEAD
   orderList() {
-=======
-  orderList(){
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
     this.navCtrl.push(AdminOrderlistPage)
   }
 }

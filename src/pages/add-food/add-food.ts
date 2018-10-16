@@ -4,10 +4,7 @@ import { AdminHomePage } from '../admin-home/admin-home';
 import { CameraOptions, Camera } from '@ionic-native/camera';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiProvider } from '../../providers/api/api';
-<<<<<<< HEAD
 import { Transfer } from '@ionic-native/transfer';
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 import { FilePath } from '@ionic-native/file-path';
 import { Base64 } from '@ionic-native/base64';
 
@@ -80,13 +77,8 @@ export class AddFoodPage {
     loading.present();
     let data = new FormData()
     data.append('image' , this.base64Image)
-<<<<<<< HEAD
     data.append('product_type' , "1")
     data.append('admin_id', "1")
-=======
-    data.append('product_type' , this.prod_type)
-    data.append('admin_id', this.admin_id)
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
     data.append('name' , this.params.value.foodname)
     data.append('des',this.params.value.fooddescription)
     data.append('price' , this.params.value.price)

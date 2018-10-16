@@ -29,10 +29,7 @@ import { LocationPickerPage } from '../pages/location-picker/location-picker';
 import { OfferPage } from '../pages/offer/offer';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
-<<<<<<< HEAD
 import { OrderViewPage } from '../pages/order-view/order-view';
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 @NgModule({
   declarations: [
     MyApp,
@@ -50,10 +47,7 @@ import { OrderViewPage } from '../pages/order-view/order-view';
     LocationPickerPage,
     FoodViewPage,
     RegisterPage,
-<<<<<<< HEAD
     OrderViewPage,
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
     LogincustomComponent
   ],  
   imports: [
@@ -72,12 +66,8 @@ import { OrderViewPage } from '../pages/order-view/order-view';
     AdminOrderlistPage,
     ProfilePage,
     AddFoodPage,
-<<<<<<< HEAD
     OrderViewPage,
     
-=======
-
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
     LocationPickerPage,
     OfferPage,
     OrderPopoverPage,

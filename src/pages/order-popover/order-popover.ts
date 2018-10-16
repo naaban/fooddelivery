@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiProvider } from '../../providers/api/api';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
-=======
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 
 /**
  * Generated class for the OrderPopoverPage page.
@@ -24,7 +20,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class OrderPopoverPage {
 
   result: any;
-<<<<<<< HEAD
   params: FormGroup;
   qtyArr: any;
   resp: any;
@@ -41,17 +36,12 @@ export class OrderPopoverPage {
     })
     this.qtyArr = this.result.qty
     console.log(this.qty)
-=======
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.result = this.navParams.get('result');
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPopoverPage');
   }
 
-<<<<<<< HEAD
   order() {
 
     if(this.params.value.doorno!="" && this.params.value.city!="" && this.params.value.streetname!="" && this.params.value.pincode!="" && this.params.value.area!="" && this.qty!=""){
@@ -115,6 +105,4 @@ export class OrderPopoverPage {
     toast.present();
   }
 
-=======
->>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
 }
