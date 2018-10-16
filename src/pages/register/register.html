@@ -1,0 +1,146 @@
+<<<<<<< HEAD
+<ion-header>
+  <ion-navbar>
+    <ion-toolbar class="toolbar toolbar-md">
+      <div class="toolbar-background toolbar-background-md"></div>
+      <ion-buttons start class="bar-buttons bar-buttons-md">
+
+        <button icon-only ion-button class="disable-hover bar-button bar-button-md bar-button-default bar-button-default-md bar-button-md">
+          <span class="button-inner"> {{this.location}}
+            <ion-icon name="md-navigate" role="img" class="icon icon-md md-navigate" aria-label="md-navigate"></ion-icon>
+          </span>
+
+        </button>
+      </ion-buttons>
+      <ion-title>Register</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+=======
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+<ion-content class="background">
+  <div padding class="opacity">
+    <form class="login100-form validate-form flex-sb flex-w" [formGroup]="params" (ngSubmit)="register()">
+      <div style="width:100%;padding-bottom:10px">
+<<<<<<< HEAD
+        <div class="wrap-input100 " [ngClass]="{'error-border':!params.controls.fullname.valid && params.controls.fullname.touched}">
+=======
+        <div class="wrap-input100 validate-input" [ngClass]="{'error-border':!params.controls.fullname.valid && params.controls.fullname.touched}">
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+          <input class="input100" type="text" formControlName="fullname" placeholder="Fullname">
+          <span class="focus-input100"></span>
+        </div>
+        <div style="color:red">
+        <div *ngIf="params.controls.fullname.hasError('required') && params.controls.fullname.touched">
+          Sorry, field Fullname is required!
+        </div>
+        <div *ngIf="params.controls.fullname.hasError('pattern') && params.controls.fullname.touched">
+          Sorry, only small and capital letters are allowed!
+        </div>
+        <div *ngIf="params.controls.fullname.hasError('minlength') && params.controls.fullname.touched">
+          Sorry, minimum Fullname length is 8!
+        </div>
+        <div *ngIf="params.controls.fullname.hasError('maxlength') && params.controls.fullname.touched">
+          Sorry, maximum Fullname length is 30!
+        </div>
+      </div>
+      </div>
+      <div style="width:100%;padding-bottom:10px">
+<<<<<<< HEAD
+        <div class="wrap-input100 " [ngClass]="{'error-border':!params.controls.username.valid && params.controls.username.touched}">
+=======
+        <div class="wrap-input100 validate-input" [ngClass]="{'error-border':!params.controls.username.valid && params.controls.username.touched}">
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+          <input class="input100" type="text" formControlName="username" placeholder="Email">
+          <span class="focus-input100"></span>
+        </div>
+        <div  style="color:red">
+          <div *ngIf="params.controls.username.hasError('required')  && params.controls.username.touched">
+            Sorry, field Email is required!
+          </div>
+          <div *ngIf="params.controls.username.hasError('pattern') && params.controls.username.touched">
+            Sorry, Please Enter Correct Email Address!!
+          </div>
+        </div>
+      </div>
+      <div style="width:100%;padding-bottom:10px">
+<<<<<<< HEAD
+        <div class="wrap-input100 " [ngClass]="{'error-border':!params.controls.mobile.valid && params.controls.mobile.touched}">
+=======
+        <div class="wrap-input100 validate-input" [ngClass]="{'error-border':!params.controls.mobile.valid && params.controls.mobile.touched}">
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+          <input class="input100" type="text" formControlName="mobile" placeholder="Mobile Number">
+          <span class="focus-input100"></span>
+        </div>
+        <div style="color:red">
+          <div *ngIf="params.controls.mobile.hasError('required') && params.controls.mobile.touched">
+            Sorry, field Mobile is required!
+          </div>
+          <div *ngIf="params.controls.mobile.hasError('pattern') && params.controls.mobile.touched">
+            Sorry, please enter correct mobile number!
+          </div>
+        </div>
+      </div>
+      <div style="width:100%;padding-bottom:10px">
+<<<<<<< HEAD
+        <div class="wrap-input100 " [ngClass]="{'error-border':!params.controls.pass.valid && params.controls.pass.touched}">
+=======
+        <div class="wrap-input100 validate-input" [ngClass]="{'error-border':!params.controls.pass.valid && params.controls.pass.touched}">
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+          <input class="input100" type="password" formControlName="pass" placeholder="Password">
+          <span class="focus-input100"></span>
+        </div>
+        <div style="color:red">
+          <div *ngIf="params.controls.pass.hasError('required') && params.controls.pass.touched">
+            Sorry, field Password is required!
+          </div>
+          <div *ngIf="params.controls.pass.hasError('minlength') && params.controls.pass.touched">
+            Sorry, minimum Password length is 8!
+          </div>
+          <div *ngIf="params.controls.pass.hasError('maxlength') && params.controls.pass.touched">
+            Sorry, maximum Pasword length is 30!
+          </div>
+        </div>
+      </div>
+      <div style="width:100%;padding-bottom:10px">
+<<<<<<< HEAD
+        <div class="wrap-input100 "[ngClass]="{'error-border':!params.controls.confirm.valid && params.controls.confirm.touched}">
+=======
+        <div class="wrap-input100 validate-input"[ngClass]="{'error-border':!params.controls.confirm.valid && params.controls.confirm.touched}">
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+          <input class="input100" type="password" formControlName="confirm" placeholder="Confirm Password">
+          <span class="focus-input100"></span>
+        </div>
+        <div style="color:red">
+          <div *ngIf="params.controls.pass.hasError('required') && params.controls.pass.touched">
+            Sorry, field Password is required!
+          </div>
+          <div *ngIf="params.controls.pass.hasError('minlength') && params.controls.pass.touched">
+            Sorry, minimum Password length is 8!
+          </div>
+          <div *ngIf="params.controls.pass.hasError('maxlength') && params.controls.pass.touched">
+            Sorry, maximum Pasword length is 30!
+          </div>
+        </div>
+      </div>
+<<<<<<< HEAD
+      <div class="wrap-input100  border">
+=======
+      <div class="wrap-input100 validate-input border">
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+        <ion-item>
+          <ion-label>Select Login Type </ion-label>
+          <ion-select [(ngModel)]="login" [ngModelOptions]="{standalone: true}">
+            <ion-option value="customer">Customer</ion-option>
+            <ion-option value="resturant">Admin</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <div class="container-login100-form-btn m-t-17">
+        <button class="login100-form-btn" type="submit">
+          Sign Up
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

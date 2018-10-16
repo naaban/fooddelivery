@@ -1,0 +1,66 @@
+<!--
+  Generated template for the AddFoodPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Food</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="background">
+  <div padding class="opacity">
+    <form class="login100-form validate-form flex-sb flex-w" [formGroup]="params" (ngSubmit)="pushPage()">
+      <div style="width:100%;padding-bottom:10px">
+        <div class="wrap-input100 validate-input" data-validate="Fullname is required">
+          <input class="input100" type="text" formControlName="foodname" placeholder="Food Name">
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+      <div style="width:100%;padding-bottom:10px">
+        <div class="wrap-input100 validate-input" data-validate="Username is required">
+          <textarea padding class="input100-1" type="text" formControlName="fooddescription" placeholder="Food Description"></textarea>
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+      <div style="width:100%;padding-bottom:10px">
+        <div class="wrap-input100 validate-input" data-validate="Username is required">
+          <input class="input100" type="text" formControlName="price" placeholder="Price">
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+      <div style="width:100%;padding-bottom:10px">
+        <div class="wrap-input100 validate-input" data-validate="Password is required">
+          <input class="input100" type="password" formControlName="qty" placeholder="Quatity Avaliable">
+          <span class="focus-input100"></span>
+        </div>
+      </div>
+      <div class="wrap-input100 validate-input border">
+        <ion-item>
+          <ion-label>Select Login Type </ion-label>
+          <ion-select [(ngModel)]="login" [ngModelOptions]="{standalone: true}">
+            <ion-option *ngFor="let res of prod_type" value="{{prod_type.indexOf(res)+1}}">{{res.product_type}}</ion-option>
+          </ion-select>
+
+        </ion-item>
+        <ion-item>
+          <ion-label>Special Offer</ion-label>
+          <ion-checkbox [(ngModel)]="splOffer" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+        </ion-item>
+      </div>
+      <div class="container-login100-form-btn m-t-17">
+        <button class="login100-form-btn" type="button" (click)="pushPage()">
+          Submit
+        </button>
+      </div>
+      <img class="select-image" src={{base64Image}} for [hidden]="!hideBtn" padding>
+      <div class="container-login100-form-btn m-t-17">
+        <button class="login100-form-btn" type="button" (click)="takePhoto(0)">
+          Select Image
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,38 @@
+page-home {
+    
+    .ion-row{
+        padding: 15px;
+        width:auto;
+    }
+    .img{
+        width: auto;
+        height: auto;
+        border-radius: 5px 5px 5px 5px;
+    }
+    .column-deals{   
+        height: 175px;
+        text-align: center;
+        box-shadow: 1px 1px 5px -2px;
+        border-radius: 5px 5px 5px 5px;
+    }
+    .column{   
+        box-shadow: 1px 1px 5px -2px;
+        border-radius: 5px 5px 5px 5px;
+    }
+    .rest-name {
+        text-align: center;
+        font-weight: 450;   
+        font-size: 20px;
+    }
+    .slider{
+        height:150px;
+    }
+    .image-card{
+        width: 150px;
+        height: auto;
+    }
+    ::-webkit-scrollbar, *::-webkit-scrollbar { display: none; }
+
+    
+  
+}

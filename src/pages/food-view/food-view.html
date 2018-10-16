@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="slider">
+    <ion-slides autoplay="10" loop="true" speed="2500">
+      <ion-slide *ngFor="let slide of slideData">
+        <img src="{{slide.image}}"/>
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+  <div margin>
+    <div *ngFor="let result of data" class="column" (click)="orderNow(result)">
+      <ion-row>
+        <div>
+          <img class="img" src="{{result.image}}">
+        </div>
+        <ion-col class="rest-name">
+          <div style="font-size:15px;font-weight: 450">{{result.name}}
+          </div>
+          <div style="font-size:13px;color:black">
+            {{result.price}} <br> Qty Avail : {{result.qty}}
+          </div>
+          <button class="button" ion-button>Order Now</button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

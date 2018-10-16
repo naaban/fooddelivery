@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-toolbar class="toolbar toolbar-md">
+      <div class="toolbar-background toolbar-background-md"></div>
+      <ion-buttons start class="bar-buttons bar-buttons-md">
+
+        <button icon-only ion-button class="disable-hover bar-button bar-button-md bar-button-default bar-button-default-md bar-button-md">
+          <span class="button-inner"> {{this.location}}
+            <ion-icon name="md-navigate" role="img" class="icon icon-md md-navigate" aria-label="md-navigate"></ion-icon>
+          </span>
+
+        </button>
+      </ion-buttons>
+      <ion-title>Home</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="slider">
+    <ion-slides autoplay="10" loop="true" speed="2500">
+      <ion-slide *ngFor="let slide of slideData">
+        <img src="{{slide.image}}" />
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+
+  <!-- <div ng-repeat="number in numbers">
+      <div class="row" ng-if="$even">
+        <div class="col col-50">{{numbers[$index]}}</div>
+        <div class="col col-50">{{numbers[$index + 1]}}</div>
+      </div>
+    </div> -->
+
+  <div padding-left>Nearby Resturants</div>
+  <hr>
+  <ion-scroll scrollX="true" padding-left style="width:100%; height:150px">
+    <ion-row nowrap>
+      <div *ngFor="let d of rest" (click)="viewRestFood(d)">
+        <ion-card class="image-card">
+          <img style="height:100px" src="{{d.image}}">
+          <div style="text-align:center">{{d.name}}</div>
+        </ion-card>
+      </div>
+    </ion-row>
+  </ion-scroll>
+  <div padding-left>Today's Deal !! Tap to Order</div>
+  <hr>  
+  <ion-grid padding>
+    <ion-row>
+      <ion-col class="col" *ngFor="let result of foods" col-4 (click)="orderNow(result)">
+        <div class="column-deals">
+          <div>
+            <img style="width:auto;height:100px;border-radius: 10px 10px 10px 10px" src="{{result.image}}">
+          </div>
+          <div style="font-size:15px;font-weight: 450">{{result.name}}
+          </div>
+          <div style="font-size:13px;color:black">
+<<<<<<< HEAD
+            {{result.price}} <br> Qty Avail : {{result.qty_avail}}
+=======
+            {{result.price}} <br> Qty Avail : {{result.qty}}
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row>
+
+  </ion-row>
+  <div>
+    <ion-grid>
+      <ion-row class="ion-row" *ngFor="let result of data" (click)="viewFood(result)">
+        <div class="column">
+          <div class="images">
+            <img class="img" src="{{result.image}}">
+          </div>
+          <div class="rest-name">{{result.name}}<br>
+          </div>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

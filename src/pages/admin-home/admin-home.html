@@ -1,0 +1,50 @@
+<!--
+  Generated template for the AdminHomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar class="toolbar toolbar-md">
+    <div class="toolbar-background toolbar-background-md"></div>
+    <ion-buttons start class="bar-buttons bar-buttons-md">
+      <button padding (click)="addFood()" icon-only ion-button class="disable-hover bar-button bar-button-md bar-button-default bar-button-default-md bar-button-md">
+        <span class="button-inner">
+          <ion-icon name="add" role="img" class="icon icon-md ion-md-add" aria-label="add"></ion-icon>
+        </span>
+      </button>
+      <button padding (click)="profile()" icon-only ion-button class="disable-hover bar-button bar-button-md bar-button-default bar-button-default-md bar-button-md">
+        <span class="button-inner">
+          <ion-icon name="contact" role="img" class="icon icon-md ion-md-contact" aria-label="contact"></ion-icon>
+        </span>
+      </button>
+      <button padding (click)="orderList()" icon-only ion-button class="disable-hover bar-button bar-button-md bar-button-default bar-button-default-md bar-button-md">
+          <span class="button-inner">
+            <ion-icon name="cart" role="img" class="icon icon-md ion-md-cart" aria-label="cart"></ion-icon>
+          </span>
+        </button>
+    </ion-buttons>
+    <ion-title>Admin</ion-title>
+  </ion-toolbar>
+
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let result of this.data" col-4 (click)="presentActionSheet(result)">
+            <div class="column">
+              <div class="images">
+                <img class="img" src="{{result.image}}">
+              </div>
+              <div class="rest-name">{{result.name}}<br>
+              </div>
+              <div style="color:grey;font-size:10px;margin-left:5px"> Rs.450
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>

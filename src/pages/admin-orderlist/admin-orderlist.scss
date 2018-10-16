@@ -1,0 +1,29 @@
+page-admin-orderlist {
+    .img{
+<<<<<<< HEAD
+        width: 100px;
+        height: auto;
+=======
+        width: 75px;
+        height: 75px;
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+        border-radius: 5px 5px 5px 5px;
+    }
+    .column{   
+        padding-left:20px; 
+        padding-right: 20px;
+        box-shadow: 1px 1px 5px -2px;
+        border-radius: 5px 5px 5px 5px;
+        margin-bottom: 10px;
+    }
+    .rest-name {    
+        text-align: center;
+        font-size: 10px;
+    }
+    .buttons{
+        text-align: center;
+        width: 90px;
+        margin-top: 45px;
+        height: 25px;
+    }
+}

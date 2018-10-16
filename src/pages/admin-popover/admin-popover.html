@@ -1,0 +1,33 @@
+<div padding class="opacity">
+  <form class="login100-form validate-form flex-sb flex-w" [formGroup]="updates" (ngSubmit)="update()">
+      <div style="width:100%;padding-bottom:10px">
+          <div class="wrap-input100 validate-input" data-validate="Fullname is required">
+            <input class="input100" type="text" formControlName="foodname" value="{{this.event.name}}" placeholder="Food Name">
+            <span class="focus-input100"></span>
+          </div>
+        </div>
+    <div style="width:100%;padding-bottom:10px">
+      <div class="wrap-input100 validate-input" data-validate="Username is required">
+        <textarea padding class="input100-1" type="text" formControlName="fooddescription" placeholder="Food Description"></textarea>
+        <span class="focus-input100"></span>
+      </div>
+    </div>
+    <div style="width:100%;padding-bottom:10px">
+        <div class="wrap-input100 validate-input" data-validate="Username is required">
+          <input class="input100" type="text" formControlName="price" placeholder="Price">
+          <span class="focus-input100"></span> 
+        </div>
+      </div>
+    <div style="width:100%;padding-bottom:10px">
+      <div class="wrap-input100 validate-input" data-validate="Password is required">
+        <input class="input100" type="password" formControlName="qty" placeholder="Quatity Avaliable">
+        <span class="focus-input100"></span>
+      </div>
+    </div>
+    <div class="container-login100-form-btn m-t-17">
+      <button class="login100-form-btn" type="submit" >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

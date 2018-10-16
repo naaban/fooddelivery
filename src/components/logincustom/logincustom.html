@@ -1,0 +1,92 @@
+<!-- Generated template for the LogincustomComponent component -->
+<div>
+
+    <div class="limiter">
+
+        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+            <div style="opacity: 0.5;font-size:15px">Login</div>
+            <div class="wrap-login100 p-l-110 p-r-110 p-t-10 p-b-33">
+                <form class="login100-form validate-form flex-sb flex-w" [formGroup]="params" (ngSubmit)="pushPage()">
+                    <div class="p-t-13 p-b-9">
+                        <span class="txt1">
+                            Username
+                        </span>
+                    </div>
+                    <div style="width:100%;padding-bottom:10px">
+                        <div class="wrap-input100 validate-input" [ngClass]="{'error-border':!params.controls.username.valid && params.controls.username.touched}">
+                            <input class="input100" type="email" formControlName="username">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div style="color:red">
+                            <div *ngIf="params.controls.username.hasError('required')  && params.controls.username.touched">
+                                Sorry, field Email is required!
+                            </div>
+                            <div *ngIf="params.controls.username.hasError('pattern') && params.controls.username.touched">
+                                Sorry, Please Enter Correct Email Address!!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-t-13 p-b-9">
+                        <span class="txt1">
+                            Password
+                        </span>
+                        <a href="#" class="txt2 bo1 m-l-5">
+                            Forgot?
+                        </a>
+                    </div>
+                    <div style="width:100%;padding-bottom:10px">
+                        <div class="wrap-input100 validate-input" [ngClass]="{'error-border':!params.controls.pass.valid && params.controls.pass.touched}">
+                            <input class="input100" type="password" formControlName="pass">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div style="color:red">
+                            <div *ngIf="params.controls.pass.hasError('required') && params.controls.pass.touched">
+                                Sorry, field Password is required!
+                            </div>
+                            <div *ngIf="params.controls.pass.hasError('minlength') && params.controls.pass.touched">
+                                Sorry, minimum Password length is 8!
+                            </div>
+                            <div *ngIf="params.controls.pass.hasError('maxlength') && params.controls.pass.touched">
+                                Sorry, maximum Pasword length is 30!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-input100 validate-input border">
+                        <ion-item>
+                            <ion-label>Select Login Type </ion-label>
+                            <ion-select [(ngModel)]="login" [ngModelOptions]="{standalone: true}">
+                                <ion-option value="customer">Customer</ion-option>
+                                <ion-option value="resturant">Admin</ion-option>
+                            </ion-select>
+
+                        </ion-item>
+                    </div>
+                    <div class="buttons">
+                        <ion-row>
+                            <ion-col>
+                                <div class="container-login100-form-btn m-t-17">
+                                    <button ion-button round outline class="login100-form-btn buttons" type="submit">
+                                        Sign In
+                                    </button>
+                                </div>
+                            </ion-col>
+                            <ion-col>
+                                <div class="container-login100-form-btn m-t-17">
+                                    <button ion-button round outline class="login100-form-btn buttons" type="button" (click)="register()">
+                                        Sign Up
+                                    </button>
+                                </div>
+
+                                
+                            </ion-col>
+                        </ion-row>
+                        <div>
+                                <button type="button" ion-button round style="background-color:brown;width:100%">   <span class="button-inner"><ion-icon name="logo-google" style="margin:10px"> Google+</ion-icon></span></button>
+                            </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

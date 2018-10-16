@@ -1,0 +1,47 @@
+<!--
+  Generated template for the AdminOrderlistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Admin Order List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+    <div *ngFor="let result of results" class="column">
+        <ion-row>
+          <ion-col>
+            <div>
+              <img class="img" src="{{result.image}}">
+            </div>
+          </ion-col>
+<<<<<<< HEAD
+          <ion-col col>
+=======
+          <ion-col col-6>
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+            <div>{{result.product}} - {{result.name}}
+            </div>
+            <div style="font-size:10px;color:gray">
+              Order No : {{result.order_no}}
+            </div>
+            <div style="font-size:10px;color:gray">
+                Qantity : {{result.qty}}
+              </div>
+            <div style="font-size:12px;color:gray">
+              Address : {{result.doorNo}} <br> {{result.district}}
+            </div>
+          </ion-col>
+          <ion-col>
+            <div  class="buttons">{{result.price}}</div>
+              <button (click)="delivered(result)" ion-button >Delivered</button>
+            </ion-col>
+        </ion-row>
+      </div>
+</ion-content>

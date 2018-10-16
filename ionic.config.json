@@ -1,0 +1,11 @@
+{
+<<<<<<< HEAD
+  "name": "fooddelivery",
+=======
+  "name": "f",
+>>>>>>> 884998a277c8f0552f9028c11b85cdbdee405ed1
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

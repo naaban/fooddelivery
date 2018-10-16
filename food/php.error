@@ -1,0 +1,5 @@
+"<br />
+<b>Notice</b>:  Undefined property: stdClass::$street in <b>D:\Xampp\htdocs\fd\food\order.php</b> on line <b>26</b><br />
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$area in <b>D:\Xampp\htdocs\fd\food\order.php</b> on line <b>26</b><br />
+{"status":1,"message":"Success","data":{"order_id":"Your order id is FOOD100019"}}"

@@ -1,0 +1,32 @@
+logincustom {
+
+    #oval {
+        width: 100%;
+        height: 600px;
+        background: white;
+        -moz-border-radius: 1000px / 500px;
+        -webkit-border-radius: 1000px / 500px;
+        border-radius: 1000px / 500px;
+        box-shadow: 1px 1px 15px -2px;;
+    }
+    .logo{
+        text-align: center;
+        width: 40%;
+    }
+    .buttons{
+        width: 100%;
+        text-align: center;
+        margin-left: auto;
+        color: #3783d9;
+        border-color: #3783d9;
+        margin-right: auto;
+    }
+
+    .border{
+        border-radius: 10px 10px 10px 10px;
+        margin-top:5px; 
+        padding: 2px 2px 2px 2px;
+    }
+    
+   
+}

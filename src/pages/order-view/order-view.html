@@ -1,0 +1,58 @@
+<!--
+  Generated template for the OrderPopoverPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{order_det.product_name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img src="{{this.order_det.image}}">
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header style="font-weight:450">
+      Ordered Details
+    </ion-card-header>
+    <ion-card-content padding>
+      <ion-row padding-left>
+        <ion-col col-4>
+          Total Amount
+        </ion-col>
+        <ion-col col-6>
+          ({{this.order_det.qty}} x {{this.order_det.price}})
+        </ion-col>
+        <ion-col>
+          Rs.{{this.order_det.total_amt}}
+        </ion-col>
+      </ion-row>
+    
+    </ion-card-content>
+
+  
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Delivery Address
+    </ion-card-header>
+    <ion-card-content>
+        {{this.order_det.cust_name}}<br>{{this.order_det.mobile}}<br>{{this.order_det.door_no}} {{this.order_det.street}}<br>{{this.order_det.city}}-{{this.order_det.pincode}}
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header style="font-weight:450">
+      Product Description
+    </ion-card-header>
+    <ion-card-content padding>
+      {{this.order_det.description}}<br>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

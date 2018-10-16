@@ -1,0 +1,80 @@
+page-login {
+
+    
+    .background{
+    background: linear-gradient(231deg, #ffffff, #3783d9, #1473c0, #023455);
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 10s ease infinite;
+    -moz-animation: AnimationName 10s ease infinite;
+    animation: AnimationName 10s ease infinite;
+    }
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:96% 0%}
+    50%{background-position:5% 100%}
+    100%{background-position:96% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:96% 0%}
+    50%{background-position:5% 100%}
+    100%{background-position:96% 0%}
+}
+@keyframes AnimationName { 
+    0%{background-position:96% 0%}
+    50%{background-position:5% 100%}
+    100%{background-position:96% 0%}
+}
+
+.login-custom {
+    margin-top: 70px;
+}
+.logo{
+    width: 120px;
+    margin-left: auto;
+    margin-right : auto;    
+    text-align: center;
+}
+.text-area {
+      
+    font-family: cursive;
+    width:100%;
+    text-align: center;
+    margin-bottom: 5px;
+    color:#ffffff;
+    font-size:20px;
+    font-weight: 230;
+   /* -webkit-animation:colorchange 1s infinite alternate;*/
+    
+    
+  }
+ 
+  .no-scroll .scroll-content{
+    overflow: hidden;
+}
+
+
+  @-webkit-keyframes colorchange {
+    25% {
+      
+      color: rgb(253, 38, 38);
+    }
+    
+    50% {
+      
+      color: #bd1313;
+    }
+    
+    75% {
+      
+      color: #807303;
+    }
+    
+    100%{
+        color: #b6c211;
+    }
+  }
+  .back{ 
+    background: linear-gradient(180deg, #aec4ff, #3783d9, #1473c0, #023455);
+    background-size: 100% 100%;
+ }
+}
