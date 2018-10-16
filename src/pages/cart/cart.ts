@@ -22,19 +22,19 @@ export class CartPage {
   user_det: any;
   data: any;
   constructor(public navCtrl: NavController,public apiProvider : ApiProvider, public navParams: NavParams, public storage : Storage) {
-    this.results = [{
-      image : "../../assets/imgs/burger.jpg",
-      name : "Burger",
-      order_no: "FOOD100001",
-      status: "On the Way"
-     },
-     {
-      image : "../../assets/imgs/graps.jpg",
-      name : "Grapes",
-      order_no: "FOOD100002",
-      status: "Will reach you in 5 mins"
-     }
-    ]
+    // this.results = [{
+    //   image : "../../assets/imgs/burger.jpg",
+    //   name : "Burger",
+    //   order_no: "FOOD100001",
+    //   status: "On the Way"
+    //  },
+    //  {
+    //   image : "../../assets/imgs/graps.jpg",
+    //   name : "Grapes",
+    //   order_no: "FOOD100002",
+    //   status: "Will reach you in 5 mins"
+    //  }
+    // ]
     
     this.getOrders();
 

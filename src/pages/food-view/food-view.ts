@@ -45,6 +45,7 @@ export class FoodViewPage {
     console.log(data)
     this.apiProvider.postData(data, 'list_product_astype.php').then(d => {
       this.results = d
+      console.log(d)
       this.data = this.results.data
     })
   }

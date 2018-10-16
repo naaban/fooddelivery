@@ -19,8 +19,11 @@ export class ProfilePage {
 
   session: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
-
+  constructor(public navCtrl: NavController,public navParams: NavParams, public storage: Storage) {
+    this.session = this.storage.get("login_det").then(d=>{
+      this.session = d
+      console.log(d)
+    })
 
   }
 
