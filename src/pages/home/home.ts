@@ -59,7 +59,12 @@ export class HomePage {
         type_id: 4,
         name: "Groscery",
         image: "../../assets/imgs/groscery.jpg"
-      }]
+      },
+    {
+      type_id:5,
+      name: "Dry fruites and Vegitables",
+      image: "../../assets/imgs/fruits.jpg"
+    }]
     this.getRest()
 
     this.foods = new FormData()
