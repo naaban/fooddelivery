@@ -34,7 +34,12 @@ while($row = mysqli_fetch_array($qry)){
     $response['tmp']['city']= $row['city'];
     $response['tmp']['state'] = $row['state'];
     $response['tmp']['pincode']=$row['pincode'];
-    $response['tmp']['approval'] = $row['approval'];
+    if($row['approval'] == 0){
+        $response['tmp']['approval'] = false;
+    }
+    else if($row['approval'] == 1){
+        $response['tmp']['approval'] = true;
+    }
     $response['tmp']['status'] = $row['status'];
     array_push($response['data'] , $response['tmp']);
 }

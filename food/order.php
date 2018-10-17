@@ -1,6 +1,8 @@
 <?php
 include 'db.php';
 include 'cmnresponse.php';
+header('Content-type:application/json');
+header('Access-Control-Allow-Origin: *');
 $response['data'] = array();
 if($_SERVER['REQUEST_METHOD'] ==  "POST"){
     $array_params=array(
@@ -29,8 +31,17 @@ if($order_id!=NULL){
         $qty = $arParams->qty;
         $qry = mysqli_query($conn , "UPDATE products SET qty_avail = qty_avail-$qty WHERE id='$arParams->product_id'");
         if($qry){
-        
-        echo json_encode(cmnresponse(TRUE,$response));
+            $qry = mysqli_query($conn , "SELECT id FROM wishlist WHERE customer_id = '$arParams->customer_id' AND product_id='$arParams->product_id'");
+            if(mysqli_num_rows($qry) > 0){
+                while($row = mysqli_fetch_array($qry)){
+                    $wish_id = $row['id'];
+                    break;
+                }
+                $qry = mysqli_query($conn , "DELETE FROM wishlist WHERE id = '$wish_id'");
+                if($qry){
+                    echo json_encode(cmnresponse(TRUE,$response));
+                }
+            }
         }
     }
     else{

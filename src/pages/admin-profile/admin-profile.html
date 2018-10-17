@@ -7,7 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>profile</ion-title>
+      <ion-toolbar class="toolbar toolbar-md">
+          <div class="toolbar-background toolbar-background-md"></div>
+          <ion-buttons start class="bar-buttons bar-buttons-md">
+            <button icon-only (click)="logout()" ion-button class="disable-hover bar-button bar-button-md bar-button-default bar-button-default-md bar-button-md">
+              <span class="button-inner">
+                <ion-icon name="log-out" role="img" class="icon icon-md md-log-out" aria-label="log-out"></ion-icon>
+              </span>
+            </button>
+          </ion-buttons>
+          <ion-title>Profile</ion-title>
+        </ion-toolbar>
   </ion-navbar>
 
 </ion-header>
@@ -16,21 +26,21 @@
 <ion-content>
   <ion-card class="ion-card">
     <div>
-      <ion-img class="profile-image" src="../../assets/imgs/profile.svg"></ion-img>
+      <ion-img class="profile-image" (click)="uploadProfile()" src="{{this.profile_image}}"></ion-img>
     </div>
 
 
-    <div class="profile-name">Username
+    <div class="profile-name">{{this.session.user_name}}
     </div>
     <div class="profile-email">
-      username@example.com
+      {{this.session.user_email}}
     </div>
     <div class="center">
       <div>
-        Mobile : 7373170701
+        Mobile : {{this.session.user_mobile}}
       </div>
       <div>
-        Whatsapp Number : 7373170701
+        Whatsapp Number : {{this.session.user_mobile}}
       </div>
 
     </div>

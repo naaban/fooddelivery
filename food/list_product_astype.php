@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     );
     $arParams = json_encode($array_params['post']);
     $arParams = json_decode($arParams);
-    $qry = mysqli_query($conn , "SELECT * FROM products WHERE product_type='$arParams->product_type'");
+    $qry = mysqli_query($conn , "SELECT pro.id,adm.id,pro.image,pro.description,pro.name,pro.admin_id,pro.product_type,pro.price,pro.qty_avail FROM products as pro JOIN admin_reg AS adm ON adm.id=pro.admin_id WHERE product_type='$arParams->product_type' AND city='$arParams->city'");
 
     if(mysqli_num_rows($qry)>0){
         while($row = mysqli_fetch_array($qry)){

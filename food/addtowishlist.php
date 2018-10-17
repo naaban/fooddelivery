@@ -1,7 +1,9 @@
 <?php 
 include 'db.php';
+include 'response.php';
 include 'cmnresponse.php';
-
+header('Content-type:application/json');
+header('Access-Control-Allow-Origin: *');
 if($_SERVER['REQUEST_METHOD']=="POST"){
 
     $array_params=array(
@@ -10,10 +12,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $arParams = json_encode($array_params['post']);
     $arParams = json_decode($arParams);
    
-    $customer_id = $arParams->cust_id;
-    $product_id = $arParams->product_id;
-    $qry=mysqli_query($conn,"INSERT INTO cart ('$customer_id','$product_id')");
-
+    $qry=mysqli_query($conn,"INSERT INTO wishlist (product_id,customer_id,qty) VALUES('$arParams->product_id','$arParams->customer_id' , '$arParams->qty')");
     if($qry){
         echo json_encode(cmnresponse(TRUE,null));
     }

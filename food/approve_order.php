@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $arParams = json_encode($array_params['post']);
     $arParams = json_decode($arParams);
     
-    $qry = mysqli_query($conn ,  "UPDATE orders SET approval=1 WHERE order_id = '$arParams->order_id'");
+    $qry = mysqli_query($conn ,  "UPDATE orders SET approval=1 ,status='Out for Delivery' WHERE order_id = '$arParams->order_id'");
 
     if($qry){
         echo json_encode(cmnresponse(TRUE, null));

@@ -13,31 +13,38 @@
 </ion-header>
 
 
-<ion-content >
-    <div *ngFor="let result of results" class="column">
-        <ion-row>
-          <ion-col>
-            <div>
-              <img class="img" src="{{result.image}}">
-            </div>
-          </ion-col>
-          <ion-col col>
-            <div>{{result.product}} - {{result.name}}
-            </div>
-            <div style="font-size:10px;color:gray">
-              Order No : {{result.order_no}}
-            </div>
-            <div style="font-size:10px;color:gray">
-                Qantity : {{result.qty}}
-              </div>
-            <div style="font-size:12px;color:gray">
-              Address : {{result.doorNo}} <br> {{result.district}}
-            </div>
-          </ion-col>
-          <ion-col>
-            <div  class="buttons">{{result.price}}</div>
-              <button (click)="delivered(result)" ion-button >Delivered</button>
-            </ion-col>
-        </ion-row>
+<ion-content>
+  <div *ngFor="let result of res" class="column">
+    <ion-row>
+      <ion-col>
+        <div>
+          <img class="img" src="{{result.image}}">
+        </div>
+      </ion-col>
+      <ion-col col>
+        <div>{{result.product_name}} - {{result.cust_name}}
+        </div>
+        <div style="font-size:10px;color:gray">
+          Order No : {{result.order_id}}
+        </div>
+        <div style="font-size:10px;color:gray">
+          Qantity : {{result.qty}}
+        </div>
+        <div style="font-size:12px;color:gray">
+          Address : {{result.door_no}}, <br>{{result.area}},<br>{{result.city}} - {{result.pincode}}
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div class="buttons">Rs.{{result.price}}</div>
+        <div style="width:auto">
+        <div [hidden]="!result.approval">
+          <button (click)="delivered(result)" ion-button>Delivered</button>
+        </div>
+        <div [hidden]="result.approval" >
+          <button style="background-color:#38ad14" (click)="cnfrmOrder(result)" ion-button>Out for <br>Delivery</button>
+        </div>
       </div>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Thumbnail } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { ApiProvider } from '../../providers/api/api';
-import { CartPage } from '../cart/cart';
 import { FoodViewPage } from '../food-view/food-view';
 import { AppPreferences } from '@ionic-native/app-preferences';
 import { OrderPopoverPage } from '../order-popover/order-popover';
 import { Storage } from '@ionic/storage';
+import { OrderPage } from '../order/order';
+
 
 @Component({
   selector: 'page-home',
@@ -46,18 +47,18 @@ export class HomePage {
       },
       {
         type_id: 2,
-        name: "Home Food",
+        name: "Homely Food",
         image: "../../assets/imgs/home_food.jpg"
       },
       {
         type_id: 3,
-        name: "Resturant Food",
+        name: "Resturant",
         image: "../../assets/imgs/pizza.png"
       },
       {
         type_id: 4,
         name: "Groscery",
-        image: "https://supermarket.lallabi.com/assets/images/product-slider/lallabi_p8.jpg"
+        image: "../../assets/imgs/groscery.jpg"
       }]
     this.getRest()
 
@@ -76,14 +77,16 @@ export class HomePage {
     this.navCtrl.push(ProfilePage);
   }
   cart() {
-    this.navCtrl.push(CartPage);
+    this.navCtrl.push(OrderPage , {wish : false});
   }
   viewFood(res) {
     console.log(res)
-    this.navCtrl.push(FoodViewPage, res);
+    this.navCtrl.push(FoodViewPage, {rest:res,resturant:false});
   }
   getRest() {
-    this.apiProvider.getData('list_resturant.php').then(d => {
+    let data = new FormData()
+    data.append('city', 'Salem')
+    this.apiProvider.postData(data,'list_resturant.php').then(d => {
       this.results = d;
       this.rest = this.results.data
       console.log(this.data);
@@ -94,12 +97,12 @@ export class HomePage {
   }
   presentPopOver(result) {
     console.log(result);
-    this.navCtrl.push(OrderPopoverPage, { "result": result })
+    this.navCtrl.push(OrderPopoverPage, { "result": result , wish : false})
     // let popOver = this.popOverCtrl.create(OrderPopoverPage, { "result": result })
     // popOver.present();
   }
   viewRestFood(rest) {
     console.log(rest)
-    this.navCtrl.push(FoodViewPage, { id: rest.id })
+    this.navCtrl.push(FoodViewPage, {rest:rest,resturant:true})
   }
 }

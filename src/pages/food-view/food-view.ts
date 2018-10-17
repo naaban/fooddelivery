@@ -17,21 +17,19 @@ import { OrderPopoverPage } from '../order-popover/order-popover';
 })
 export class FoodViewPage {
 
-  title: any;
+  rest: any;
   id: any;
   image: any;
   results: any;
   data: any;
   type: any;
-
+  resturant : any;
   constructor(public navCtrl: NavController,public navParams: NavParams, public apiProvider: ApiProvider,public popOverCtrl:PopoverController) {
 
-    this.title = this.navParams.get("name");
-    this.id = this.navParams.get("id")
-    this.image = this.navParams.get("image")
-    this.type = this.navParams.get("type_id")
-    console.log(this.type);
-    if(this.id!=null)
+    this.rest = this.navParams.get("rest");
+    this.resturant = this.navParams.get("resturant")
+    console.log(this.rest);
+    if(this.resturant==true)
     this.getRestProducts()
     else
     this.getProductAsType();
@@ -41,7 +39,8 @@ export class FoodViewPage {
 
   getProductAsType(){
     let data = new FormData;
-    data.append('product_type', this.type)
+    data.append('product_type', this.rest.type_id)
+    data.append('city','Salem')
     console.log(data)
     this.apiProvider.postData(data, 'list_product_astype.php').then(d => {
       this.results = d
@@ -51,7 +50,8 @@ export class FoodViewPage {
   }
   getRestProducts() {
     let data = new FormData;
-    data.append('admin_id', this.id)
+    data.append('admin_id', this.rest.id)
+    data.append('city','Salem')
     this.apiProvider.postData(data, 'list_product.php').then(d => {
       this.results = d
       this.data = this.results.data

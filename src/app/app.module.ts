@@ -8,7 +8,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
-import { CartPage } from '../pages/cart/cart';
 import { ProfilePage } from '../pages/profile/profile';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
@@ -30,20 +29,24 @@ import { OfferPage } from '../pages/offer/offer';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { OrderViewPage } from '../pages/order-view/order-view';
+import { WishlistPage } from '../pages/wishlist/wishlist';
+import { OrderPage } from '../pages/order/order';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    CartPage,
     AdminHomePage,
     ProfilePage,
     AdminProfilePage,
     AdminOrderlistPage,
     AdminPopoverPage,
     LoginPage,
+    WishlistPage,
     OfferPage,
     AddFoodPage,
     OrderPopoverPage,
+    OrderPage,
     LocationPickerPage,
     FoodViewPage,
     RegisterPage,
@@ -62,12 +65,12 @@ import { OrderViewPage } from '../pages/order-view/order-view';
     AdminHomePage,
     AdminProfilePage,
     HomePage,
-    CartPage,
     AdminOrderlistPage,
     ProfilePage,
+    WishlistPage,
     AddFoodPage,
     OrderViewPage,
-    
+    OrderPage,
     LocationPickerPage,
     OfferPage,
     OrderPopoverPage,

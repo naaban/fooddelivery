@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-toolbar class="toolbar toolbar-md">
+      <div class="toolbar-background toolbar-background-md"></div>
+      <ion-title>WishList</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngFor="let result of wishlist" class="column" padding (click) = "orderNow(result)">
+      <ion-row>
+          <ion-col>
+            <div>
+              <img class="img" src="{{result.image}}">
+            </div>
+          </ion-col>
+          <ion-col col-8>
+            <div>{{result.name}}
+            </div>
+            <div style="font-size:10px;color:gray;font-weight: 450">
+              Qty in WishList : {{result.qty_wish}}
+            </div>
+            
+          </ion-col>
+      
+        </ion-row>
+  </div>
+</ion-content>

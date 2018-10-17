@@ -51,6 +51,9 @@ export class LocationPickerPage {
     else if (!this.params) {
       this.page = HomePage;
     }
+    else if(this.params){
+      this.page = AdminHomePage
+    }
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp.coords)
       if (resp != null) {

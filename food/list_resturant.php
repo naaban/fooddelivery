@@ -6,7 +6,13 @@ header('Content-type:application/json');
 header('Access-Control-Allow-Origin: *');
 $response = array();
 $response['data'] = array();
-$qry = mysqli_query($conn , "SELECT id,name,image FROM admin_reg");
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $array_params=array(
+        'post' => $_POST
+    );
+    $arParams = json_encode($array_params['post']);
+    $arParams = json_decode($arParams);
+$qry = mysqli_query($conn , "SELECT id,name,image FROM admin_reg WHERE city='$arParams->city'");
 while($row = mysqli_fetch_array($qry)){
     $response['tmp']['id'] = $row['id'];
     $response['tmp']['name'] = $row['name'];
@@ -18,5 +24,6 @@ if(mysqli_num_rows($qry) > 0){
 }
 else{
     echo json_encode(cmnresponse(FALSE , $response));
+}
 }
 ?>

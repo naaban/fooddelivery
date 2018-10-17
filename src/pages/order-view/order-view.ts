@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
+import {Storage} from '@ionic/storage'
 
 /**
  * Generated class for the OrderViewPage page.
@@ -16,12 +18,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class OrderViewPage {
 
   order_det : any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.order_det =  this.navParams.get("order")
+  constructor(public navCtrl: NavController,public storage : Storage, public navParams: NavParams, public apiProvider : ApiProvider) {
+     this.order_det =  this.navParams.get("order")
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderViewPage');
+  }
+
+  getOrders(){
+    let cust_id;
+    this.storage.get("login_det").then(d=>{
+      cust_id = d;
+    })
+    let data = new FormData()
+    data.append('cust_id',cust_id)
+    this.apiProvider.postData(data , 'list_order_customer.php').then(d=>{
+      this.order_det = d;
+      this.order_det = this.order_det.data
+      console.log(this.order_det)
+    })
   }
 
 }

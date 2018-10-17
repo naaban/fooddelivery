@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 $response['data']['user_id'] = $row['id'];
                 $response['data']['user_name'] = $row['name'];
                 $response['data']['user_mobile'] = $row['mobile'];
-            
+                $response['data']['user_role'] = "customer";
                 break;
             }
             echo json_encode(cmnresponse(TRUE,$response));
@@ -43,6 +43,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 $response['data']['user_mobile'] = $row['mobile'];
                 $response['data']['user_city'] = $row['city'];
                 $response['data']['user_state'] = $row['state'];
+                $response['data']['user_image'] =  $row['image'];
+                $response['data']['user_role'] = "admin";
                 break;
             }
             echo json_encode(cmnresponse(TRUE,$response));

@@ -10,15 +10,18 @@ import { AdminOrderlistPage } from '../pages/admin-orderlist/admin-orderlist';
 import { AdminHomePage } from '../pages/admin-home/admin-home';
 import { LocationPickerPage } from '../pages/location-picker/location-picker';
 import { OfferPage } from '../pages/offer/offer';
-import { CartPage } from '../pages/cart/cart';
 import { ProfilePage } from '../pages/profile/profile';
 import { RegisterPage } from '../pages/register/register';
+import { AddFoodPage } from '../pages/add-food/add-food';
+import { WishlistPage } from '../pages/wishlist/wishlist';
+import { OrderPage } from '../pages/order/order';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
   pages: Array<{title: string, component: any,name:string}>;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -28,9 +31,10 @@ export class MyApp {
       statusBar.overlaysWebView(false);
       this.pages = [
         { title: 'Home', component: HomePage,name:"md-home" },
+        {title: 'WishList' , component:WishlistPage , name:"md-heart" },
         { title: 'Offers', component: OfferPage,name:"md-flame" },
-        { title:'Orders', component : CartPage,name:"md-cart"},
-        { title:'Profile' , component:ProfilePage,name:"md-contact"},
+        { title:'Orders', component : OrderPage,name:"md-cart"},
+        { title:'Profile' , component:ProfilePage,name:"md-contact"}
       ];
   
       statusBar.styleLightContent();
