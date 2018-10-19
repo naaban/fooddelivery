@@ -3,7 +3,6 @@ import { NavController, NavParams, Thumbnail } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { ApiProvider } from '../../providers/api/api';
 import { FoodViewPage } from '../food-view/food-view';
-import { AppPreferences } from '@ionic-native/app-preferences';
 import { OrderPopoverPage } from '../order-popover/order-popover';
 import { Storage } from '@ionic/storage';
 import { OrderPage } from '../order/order';

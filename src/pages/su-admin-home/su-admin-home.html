@@ -1,0 +1,40 @@
+<!--
+  Generated template for the SuAdminHomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+      <ion-toolbar class="toolbar toolbar-md">
+          <div class="toolbar-background toolbar-background-md"></div>
+          <ion-buttons start class="bar-buttons bar-buttons-md">
+            <button icon-only (click)="logout()" ion-button class="disable-hover bar-button bar-button-md bar-button-default bar-button-default-md bar-button-md">
+              <span class="button-inner">
+                <ion-icon name="log-out" role="img" class="icon icon-md md-log-out" aria-label="log-out"></ion-icon>
+              </span>
+            </button>
+          </ion-buttons>
+          <ion-title>Profile</ion-title>
+        </ion-toolbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-row style="margin-left: 5px;margin-right: 5px">
+    <ion-col col-6>
+      <ion-card style="height:45px;background-color:#03D600">
+        <p style="text-align:center">Approved Resturants</p>
+      </ion-card>
+    </ion-col>
+    <ion-col col-6>
+      <ion-card style="height:45px;background-color: #FF502A">
+        <p style="text-align:center">Unapproved Resturants</p>
+
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

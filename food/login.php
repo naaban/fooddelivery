@@ -44,7 +44,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 $response['data']['user_city'] = $row['city'];
                 $response['data']['user_state'] = $row['state'];
                 $response['data']['user_image'] =  $row['image'];
+                $response['data']['user_status'] = $row['approved'];
                 $response['data']['user_role'] = "admin";
+                if($row['su_admin']==0)
+                $response['data']['su_admin']=false;
+                else if($row['su_admin'] == 1)
+                $response['data']['su_admin']=true;
+
                 break;
             }
             echo json_encode(cmnresponse(TRUE,$response));

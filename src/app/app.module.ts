@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ApiProvider } from '../providers/api/api';
@@ -20,8 +19,6 @@ import { AddFoodPage } from '../pages/add-food/add-food';
 import { AdminPopoverPage } from '../pages/admin-popover/admin-popover';
 import { IonicStorageModule } from '@ionic/storage';
 import { Base64 } from '@ionic-native/base64';
-import { AppPreferences } from '@ionic-native/app-preferences';
-import { GoogleMaps } from '@ionic-native/google-maps';
 import { OrderPopoverPage } from '../pages/order-popover/order-popover';
 import { AdminOrderlistPage } from '../pages/admin-orderlist/admin-orderlist';
 import { LocationPickerPage } from '../pages/location-picker/location-picker';
@@ -31,11 +28,14 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { OrderViewPage } from '../pages/order-view/order-view';
 import { WishlistPage } from '../pages/wishlist/wishlist';
 import { OrderPage } from '../pages/order/order';
+import { SuAdminHomePage } from '../pages/su-admin-home/su-admin-home';
+import { ContactAdminPage } from '../pages/contact-admin/contact-admin';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    ContactAdminPage,
     AdminHomePage,
     ProfilePage,
     AdminProfilePage,
@@ -51,6 +51,7 @@ import { OrderPage } from '../pages/order/order';
     FoodViewPage,
     RegisterPage,
     OrderViewPage,
+    SuAdminHomePage,
     LogincustomComponent
   ],  
   imports: [
@@ -70,9 +71,11 @@ import { OrderPage } from '../pages/order/order';
     WishlistPage,
     AddFoodPage,
     OrderViewPage,
+    ContactAdminPage,
     OrderPage,
     LocationPickerPage,
     OfferPage,
+    SuAdminHomePage,
     OrderPopoverPage,
     AdminPopoverPage,
     FoodViewPage,
@@ -85,12 +88,8 @@ import { OrderPage } from '../pages/order/order';
     Camera,
     SplashScreen,
     NativeGeocoder,
-    FileTransfer,
     Geolocation,
     Base64,
-    GoogleMaps,
-    AppPreferences,
-    FileTransferObject,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiProvider
   ]

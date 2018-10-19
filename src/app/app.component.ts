@@ -15,13 +15,14 @@ import { RegisterPage } from '../pages/register/register';
 import { AddFoodPage } from '../pages/add-food/add-food';
 import { WishlistPage } from '../pages/wishlist/wishlist';
 import { OrderPage } from '../pages/order/order';
+import { SuAdminHomePage } from '../pages/su-admin-home/su-admin-home';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   pages: Array<{title: string, component: any,name:string}>;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

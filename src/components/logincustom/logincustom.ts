@@ -6,11 +6,11 @@ import { RegisterPage } from '../../pages/register/register';
 import { AdminHomePage } from '../../pages/admin-home/admin-home';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiProvider } from '../../providers/api/api';
-import { IonicStorageModule } from '@ionic/storage';
-import { AppPreferences } from '@ionic-native/app-preferences';
 import { LocationPickerPage } from '../../pages/location-picker/location-picker';
 import { Storage } from '@ionic/storage'
 import { LoginPage } from '../../pages/login/login';
+import { SuAdminHomePage } from '../../pages/su-admin-home/su-admin-home';
+import { ContactAdminPage } from '../../pages/contact-admin/contact-admin';
 
 /**
  * Generated class for the LogincustomComponent component.
@@ -48,9 +48,10 @@ export class LogincustomComponent {
           if (this.result.user_role == "customer") {
             this.navCtrl.setRoot(HomePage)
           }
+          else if (this.result.su_admin) navCtrl.setRoot(SuAdminHomePage)
           else if (this.result.user_role == "admin") navCtrl.setRoot(AdminHomePage)
+          
         }
-
       }
     })
   }
@@ -93,9 +94,20 @@ export class LogincustomComponent {
           this.isAdmin = true
           console.log(this.result);
           if (this.result.status == 1) {
-            this.loading.dismiss();
-            this.storage.set("login_det", this.result.data);
-            this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin })
+            let resp = this.result.data
+            if (resp.su_admin) {
+              this.loading.dismiss()
+              this.storage.set("login_det", this.result.data);
+              this.navCtrl.setRoot(SuAdminHomePage)
+            }
+            else if(resp.user_status == 1) {
+              this.loading.dismiss();
+              this.storage.set("login_det", this.result.data);
+              this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin })
+            }
+            else{
+              this.navCtrl.setRoot(ContactAdminPage)
+            }
           }
           else {
             console.log(this.result);
@@ -140,7 +152,6 @@ export class LogincustomComponent {
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
     });
-
     toast.present();
   }
 

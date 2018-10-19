@@ -4,8 +4,6 @@ import { AdminHomePage } from '../admin-home/admin-home';
 import { CameraOptions, Camera } from '@ionic-native/camera';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiProvider } from '../../providers/api/api';
-import { Transfer } from '@ionic-native/transfer';
-import { FilePath } from '@ionic-native/file-path';
 import { Base64 } from '@ionic-native/base64';
 
 
