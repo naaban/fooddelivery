@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Storage} from '@ionic/storage';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the ContactAdminPage page.
@@ -15,11 +17,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ContactAdminPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public storage : Storage) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContactAdminPage');
+  }
+  logout(){
+    this.storage.clear()
+    this.navCtrl.setRoot(LoginPage)
   }
 
 }

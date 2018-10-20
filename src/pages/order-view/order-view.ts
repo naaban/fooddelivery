@@ -18,8 +18,11 @@ import {Storage} from '@ionic/storage'
 export class OrderViewPage {
 
   order_det : any;
+  price: any;
   constructor(public navCtrl: NavController,public storage : Storage, public navParams: NavParams, public apiProvider : ApiProvider) {
      this.order_det =  this.navParams.get("order")
+     this.price = this.order_det.qty * this.order_det.price;
+      console.log(this.price)
   }
 
   ionViewDidLoad() {
@@ -36,6 +39,7 @@ export class OrderViewPage {
     this.apiProvider.postData(data , 'list_order_customer.php').then(d=>{
       this.order_det = d;
       this.order_det = this.order_det.data
+      
       console.log(this.order_det)
     })
   }

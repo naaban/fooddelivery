@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $arParams = json_encode($array_params['post']);
     $arParams = json_decode($arParams);
 
-$qry = mysqli_query($conn , "SELECT ord.order_id,ord.status,ord.approval,ord.total_amt,pro.id,ord.qty,creg.id,ord.customer_id,pro.name AS product_name,pro.description,pro.price,pro.image,creg.name AS cust_name,pro.price,creg.mobile,creg.email,ord.street,ord.doorno,ord.city,ord.state,ord.pincode,ord.area FROM customer_reg AS creg JOIN orders AS ord ON ord.customer_id = creg.id  JOIN products AS pro ON pro.id = ord.product_id WHERE creg.id = '$arParams->cust_id'");
+$qry = mysqli_query($conn , "SELECT ord.order_id,ord.discount,ord.status,ord.approval,ord.total_amt,pro.id,ord.qty,creg.id,ord.customer_id,pro.name AS product_name,pro.description,pro.price,pro.image,creg.name AS cust_name,pro.price,creg.mobile,creg.email,ord.street,ord.doorno,ord.city,ord.state,ord.pincode,ord.area FROM customer_reg AS creg JOIN orders AS ord ON ord.customer_id = creg.id  JOIN products AS pro ON pro.id = ord.product_id WHERE creg.id = '$arParams->cust_id' ORDER BY ord.id DESC");
 
 echo mysqli_error($conn);
 
@@ -23,6 +23,7 @@ while($row = mysqli_fetch_array($qry)){
     $response['tmp']['product_name'] = $row['product_name'];
     $response['tmp']['description']=$row['description'];
     $response['tmp']['total_amt'] = $row['total_amt'];
+    $response['tmp']['discount']=$row['discount'];
     $response['tmp']['price'] = $row['price'];
     $response['tmp']['qty'] = $row['qty'];
     $response['tmp']['image']=$row['image'];

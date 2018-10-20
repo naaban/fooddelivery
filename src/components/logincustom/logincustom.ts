@@ -45,18 +45,22 @@ export class LogincustomComponent {
         this.result = d
         console.log(d)
         if (this.result.user_id != null) {
-          if (this.result.user_role == "customer") {
-            this.navCtrl.setRoot(HomePage)
+          if (this.result.user_role == "admin") {
+            if (this.result.su_admin) {
+              this.navCtrl.setRoot(SuAdminHomePage)
+            }
+            else if (this.result.user_status)
+              this.navCtrl.setRoot(AdminHomePage)
+            else
+              navCtrl.setRoot(ContactAdminPage)
           }
-          else if (this.result.su_admin) navCtrl.setRoot(SuAdminHomePage)
-          else if (this.result.user_role == "admin") navCtrl.setRoot(AdminHomePage)
-          
+          else if (this.result.user_role == "customer") this.navCtrl.setRoot(HomePage)
+          else this.navCtrl.setRoot(ContactAdminPage)
         }
       }
     })
   }
   pushPage() {
-
     if (this.login != null) {
       this.presentLoadingCustom()
       if (this.login == "customer") {
@@ -100,12 +104,13 @@ export class LogincustomComponent {
               this.storage.set("login_det", this.result.data);
               this.navCtrl.setRoot(SuAdminHomePage)
             }
-            else if(resp.user_status == 1) {
+            else if (resp.user_status) {
               this.loading.dismiss();
               this.storage.set("login_det", this.result.data);
               this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin })
             }
-            else{
+            else {
+              this.storage.set("login_det", this.result.data);
               this.navCtrl.setRoot(ContactAdminPage)
             }
           }

@@ -7,12 +7,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>contact-admin</ion-title>
+      <ion-toolbar class="toolbar toolbar-md">
+          <div class="toolbar-background toolbar-background-md"></div>
+          <ion-buttons start class="bar-buttons bar-buttons-md">
+            <button icon-only (click)="logout()" ion-button class="disable-hover bar-button bar-button-md bar-button-default bar-button-default-md bar-button-md">
+              <span class="button-inner">
+                <ion-icon name="log-out" role="img" class="icon icon-md md-log-out" aria-label="log-out"></ion-icon>
+              </span>
+            </button>
+          </ion-buttons>
+          <ion-title>Profile</ion-title>
+        </ion-toolbar>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-card>
+    <ion-card-header>Contact Admin to Activate Account</ion-card-header>
+    <ion-card-content style="margin-top:20px"> If you Activate your account then you can post products and approve orders</ion-card-content>
+  </ion-card>
 
 </ion-content>

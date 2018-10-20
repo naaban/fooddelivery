@@ -36,20 +36,33 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $qry=mysqli_query($conn , "SELECT * FROM admin_reg WHERE email='$arParams->email' AND password='$arParams->password'");
         if(mysqli_num_rows($qry)){
             cmnresponse(TRUE,$response);
-            $response['user_email'] = $arParams->email; 
+            
             while($row = mysqli_fetch_array(mysqli_query($conn , "SELECT * FROM admin_reg WHERE email = '$arParams->email'"))){
                 $response['data']['user_id'] = $row['id'];
                 $response['data']['user_name'] = $row['name'];
                 $response['data']['user_mobile'] = $row['mobile'];
+                $response['data']['user_email'] = $arParams->email; 
                 $response['data']['user_city'] = $row['city'];
                 $response['data']['user_state'] = $row['state'];
                 $response['data']['user_image'] =  $row['image'];
-                $response['data']['user_status'] = $row['approved'];
+                if($row['approved'] == 1)
+                {
+                    $response['data']['user_status'] = true;
+                   
+                }
+                else if($row['approved'] == 0)
+                {
+                    $response['data']['user_status'] = false;
+                }
                 $response['data']['user_role'] = "admin";
                 if($row['su_admin']==0)
-                $response['data']['su_admin']=false;
+                {
+                    $response['data']['su_admin']=false;
+                }
                 else if($row['su_admin'] == 1)
-                $response['data']['su_admin']=true;
+                {
+                    $response['data']['su_admin']=true;
+                }
 
                 break;
             }

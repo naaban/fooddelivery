@@ -25,15 +25,33 @@ export class ProfilePage {
   result: any;
   profile_image : any = "../../assets/imgs/profile.svg";
   base64Image : any;
+  wallet: any = {
+    amount : 0
+  };
   
   constructor(public navCtrl: NavController,public navParams: NavParams, public storage: Storage,public toastCtrl: ToastController, public camera: Camera , public formBuilder : FormBuilder,public apiProvider:ApiProvider,public base64 : Base64) {
+    this.getWalletAmt()
+    console.log(this.wallet);
     this.session = this.storage.get("login_det").then(d=>{
       this.session = d
       console.log(d)
+
     })
 
-  }
 
+  }
+  getWalletAmt(){
+    let data = new FormData();
+    data.append('customer_id' , '1');
+    this.apiProvider.postData(data , 'wallet.php').then(d=>{
+      this.wallet = d;
+      console.log(d)
+      if(this.wallet.status == 1){
+        this.wallet = this.wallet.data
+        console.log(this.wallet)     
+       }
+    })
+  }
   ionViewDidLoad() {
     
     console.log('ionViewDidLoad ProfilePage');
@@ -81,5 +99,5 @@ export class ProfilePage {
     });
     toast.present();
   }
-
+ 
 }

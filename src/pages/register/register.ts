@@ -93,23 +93,28 @@ export class RegisterPage {
           })
         }
         else if (this.login == 'resturant') {
-          let data = new FormData();
-          data.append('role', this.login)
-          data.append('mobile', this.params.value.mobile)
-          data.append('name', this.params.value.fullname)
-          data.append('email', this.params.value.username)
-          data.append('password', this.params.value.pass)
-          this.apiProvider.postData(data, 'register.php').then(d => {
-            this.result = d
-            console.log(this.result)
-            if (this.result.status == 1) {
-              this.navCtrl.setRoot(LoginPage)
-              this.presentToast('Successfully Registered Please Login')
-            }
-            else if (this.result.status == 2) { this.presentToast('User Already Exists.. Please Login'); this.navCtrl.setRoot(LoginPage) }
-            else
-              this.presentToast('Incorrect Email or Password')
+          this.storage.get("location").then(d=>{
+            let data = new FormData();
+            data.append('role', this.login)
+            data.append('mobile', this.params.value.mobile)
+            data.append('name', this.params.value.fullname)
+            data.append('email', this.params.value.username)
+            data.append('password', this.params.value.pass)
+            data.append('city' , d.city)
+            data.append('state' , d.state)
+            this.apiProvider.postData(data, 'register.php').then(d => {
+              this.result = d
+              console.log(this.result)
+              if (this.result.status == 1) {
+                this.navCtrl.setRoot(LoginPage)
+                this.presentToast('Successfully Registered Please Login')
+              }
+              else if (this.result.status == 2) { this.presentToast('User Already Exists.. Please Login'); this.navCtrl.setRoot(LoginPage) }
+              else
+                this.presentToast('Incorrect Email or Password')
+            })
           })
+         
         }
       }
       else {

@@ -1,0 +1,39 @@
+<!--
+  Generated template for the ApprovedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Approved</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div *ngFor="let result of approved" class="column">
+    <ion-row>
+      <ion-col>
+        <div>
+          <img class="img" src="{{result.image}}">
+        </div>
+      </ion-col>
+      <ion-col col>
+        <div>{{result.name}}
+        </div>
+        <div style="font-size:10px">+91{{result.mobile}}</div>
+        <div style="font-size:10px">{{result.city}} , {{result.state}}</div>
+      </ion-col>
+      <ion-col col-6>
+        <div style="width:auto">
+          <div  class="but">
+            <button style="background-color:#FF502A" (click)="unapprove(result)" ion-button>Unapprove <br> Resturant</button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -30,6 +30,9 @@ import { WishlistPage } from '../pages/wishlist/wishlist';
 import { OrderPage } from '../pages/order/order';
 import { SuAdminHomePage } from '../pages/su-admin-home/su-admin-home';
 import { ContactAdminPage } from '../pages/contact-admin/contact-admin';
+import { ApprovedPage } from '../pages/approved/approved';
+import { UnapprovedPage } from '../pages/unapproved/unapproved';
+import { UploadAdsPage } from '../pages/upload-ads/upload-ads';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,8 @@ import { ContactAdminPage } from '../pages/contact-admin/contact-admin';
     AdminOrderlistPage,
     AdminPopoverPage,
     LoginPage,
+    ApprovedPage,
+    UnapprovedPage,
     WishlistPage,
     OfferPage,
     AddFoodPage,
@@ -52,7 +57,8 @@ import { ContactAdminPage } from '../pages/contact-admin/contact-admin';
     RegisterPage,
     OrderViewPage,
     SuAdminHomePage,
-    LogincustomComponent
+    LogincustomComponent,
+    UploadAdsPage
   ],  
   imports: [
     BrowserModule,
@@ -80,8 +86,11 @@ import { ContactAdminPage } from '../pages/contact-admin/contact-admin';
     AdminPopoverPage,
     FoodViewPage,
     LoginPage,
+    ApprovedPage,
+    UnapprovedPage,
     RegisterPage,
-    LogincustomComponent
+    LogincustomComponent,
+    UploadAdsPage
   ],
   providers: [
     StatusBar,

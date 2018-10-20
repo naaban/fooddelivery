@@ -43,8 +43,6 @@ export class AdminOrderlistPage {
         console.log(d)
       })
     })
-   
-   
   }
   delivered(result) {
     let alert = this.alertCtrl.create({
@@ -62,7 +60,15 @@ export class AdminOrderlistPage {
           text: 'Yes',
           handler: () => {
             console.log('Yes clicked');
-            this.results.splice(this.results.indexOf(result), 1)
+            let data = new FormData()
+            data.append('order_id' , result.order_id)
+            this.apiProvider.postData(data , 'delivery.php').then(d=>{
+              this.results = d;
+              if(this.results.status == 1){
+                this.presentToast("Product Delivered")
+                this.getProducts()
+              }
+            })
           }
         }
       ]
@@ -110,9 +116,7 @@ export class AdminOrderlistPage {
     toast.onDidDismiss(() => {
       console.log('Dismissed toast');
       this.getProducts()
-      this.loading.dismiss()
     });
-
     toast.present();
   }
   presentLoadingCustom() {
@@ -130,7 +134,6 @@ export class AdminOrderlistPage {
        </ion-row>
        </div>`,
     });
-
     this.loading.present();
   }
 }

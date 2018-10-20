@@ -68,7 +68,7 @@ export class HomePage {
 
     this.foods = new FormData()
     this.foods.append('spl_offer', 1)
-    this.foods.append('city','Salem')  
+    this.foods.append('city',this.loc)  
         this.apiProvider.postData(this.foods, 'special_offer.php').then(d => {
       this.foods = d
       this.foods = this.foods.data

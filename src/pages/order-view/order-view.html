@@ -30,9 +30,20 @@
           ({{this.order_det.qty}} x {{this.order_det.price}})
         </ion-col>
         <ion-col>
-          Rs.{{this.order_det.total_amt}}
+          Rs.{{this.price}}
         </ion-col>
       </ion-row>
+      <ion-row padding-left>
+          <ion-col col-4>
+            Deduced (Wallet)
+          </ion-col>
+          <ion-col col-6>
+             {{this.order_det.discount}}
+          </ion-col>
+          <ion-col>
+              Rs.{{this.order_det.total_amt}} 
+          </ion-col>
+        </ion-row>
     
     </ion-card-content>
 

@@ -16,15 +16,17 @@ import { AddFoodPage } from '../pages/add-food/add-food';
 import { WishlistPage } from '../pages/wishlist/wishlist';
 import { OrderPage } from '../pages/order/order';
 import { SuAdminHomePage } from '../pages/su-admin-home/su-admin-home';
+import { ApiProvider } from '../providers/api/api';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage;
+  rootPage:any = SuAdminHomePage;
+  wallet: any;
   pages: Array<{title: string, component: any,name:string}>;
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,public apiProvider: ApiProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -40,12 +42,27 @@ export class MyApp {
   
       statusBar.styleLightContent();
       splashScreen.hide();
+      
     });
+    this.getWalletAmt()
   }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  getWalletAmt(){
+    let data = new FormData();
+    data.append('customer_id' , '1');
+    this.apiProvider.postData(data , 'wallet.php').then(d=>{
+      this.wallet = d;
+      console.log(d)
+      if(this.wallet.status == 1){
+        this.wallet = this.wallet.data
+        console.log(this.wallet)     
+       }
+    })
   }
 }
 
