@@ -17,14 +17,17 @@ import { WishlistPage } from '../pages/wishlist/wishlist';
 import { OrderPage } from '../pages/order/order';
 import { SuAdminHomePage } from '../pages/su-admin-home/su-admin-home';
 import { ApiProvider } from '../providers/api/api';
+import { PaypalPage } from '../pages/paypal/paypal';
+import { timer } from 'rxjs/observable/timer';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage;
+  rootPage:any = PaypalPage;
   wallet: any;
+  showSplash = true;
   pages: Array<{title: string, component: any,name:string}>;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,public apiProvider: ApiProvider) {
     platform.ready().then(() => {
@@ -42,6 +45,7 @@ export class MyApp {
   
       statusBar.styleLightContent();
       splashScreen.hide();
+      timer(3000).subscribe(() => this.showSplash = false) 
       
     });
     this.getWalletAmt()

@@ -29,13 +29,16 @@
     "@ionic-native/geolocation": "^4.15.0",
     "@ionic-native/google-maps": "^4.14.0",
     "@ionic-native/native-geocoder": "^4.15.0",
+    "@ionic-native/paypal": "^4.16.0",
     "@ionic-native/splash-screen": "~4.12.0",
     "@ionic-native/status-bar": "^4.12.2",
     "@ionic-native/transfer": "^3.14.0",
     "@ionic/storage": "^2.2.0",
     "@material-ui/core": "^3.1.1",
     "@material-ui/icons": "^3.0.1",
+    "card.io.cordova.mobilesdk": "2.1.0",
     "com-badrit-base64": "^0.2.0",
+    "com.paypal.cordova.mobilesdk": "3.5.0",
     "cordova-android": "7.0.0",
     "cordova-js": "^4.2.4",
     "cordova-plugin-camera": "^4.0.3",
@@ -81,7 +84,8 @@
         "PLAY_SERVICES_VERSION": "15.0.1",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-nativegeocoder": {}
+      "cordova-plugin-nativegeocoder": {},
+      "com.paypal.cordova.mobileSdk": {}
     },
     "platforms": [
       "android"

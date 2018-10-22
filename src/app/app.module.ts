@@ -16,6 +16,7 @@ import { AdminHomePage } from '../pages/admin-home/admin-home';
 import { AdminProfilePage } from '../pages/admin-profile/admin-profile';
 import { Camera } from '@ionic-native/camera';
 import { AddFoodPage } from '../pages/add-food/add-food';
+import {HttpModule} from '@angular/http';
 import { AdminPopoverPage } from '../pages/admin-popover/admin-popover';
 import { IonicStorageModule } from '@ionic/storage';
 import { Base64 } from '@ionic-native/base64';
@@ -33,6 +34,8 @@ import { ContactAdminPage } from '../pages/contact-admin/contact-admin';
 import { ApprovedPage } from '../pages/approved/approved';
 import { UnapprovedPage } from '../pages/unapproved/unapproved';
 import { UploadAdsPage } from '../pages/upload-ads/upload-ads';
+import { PaypalPageModule } from '../pages/paypal/paypal.module';
+import { PayPal } from '@ionic-native/paypal';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { UploadAdsPage } from '../pages/upload-ads/upload-ads';
   imports: [
     BrowserModule,
     HttpClientModule,
-    
+    HttpModule, 
+    PaypalPageModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -96,6 +100,7 @@ import { UploadAdsPage } from '../pages/upload-ads/upload-ads';
   providers: [
     StatusBar,
     Camera,
+    PayPal,
     SplashScreen,
     NativeGeocoder,
     Geolocation,
