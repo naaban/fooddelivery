@@ -19,8 +19,8 @@ export class PaypalPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public payPal: PayPal) {
   }
 
-  payment: PayPalPayment = new PayPalPayment('1', 'IN', 'trail', 'sale');
-  currencies = ['IN'];
+  payment: PayPalPayment = new PayPalPayment('100', 'INR', 'trail', 'sale');
+  currencies = ['INR'];
   payPalEnvironment: string = 'payPalEnvironmentSandbox';
 
   makePayment() {
@@ -35,8 +35,7 @@ export class PaypalPage {
        // payPalShippingAddressOption: 0 // PayPalShippingAddressOptionPayPal
       })).then(() => {
         this.payPal.renderSinglePaymentUI(this.payment).then((response) => {
-          alert(`Successfully paid. Status = ${response.response.state}`);
-					console.log(response);
+         
           // Successfully paid
 
           // Example sandbox response
@@ -56,8 +55,8 @@ export class PaypalPage {
           //     "intent": "sale"
           //   }
           // }
-        }, () => {
-          console.log("Error or render dialog closed without being successfull")
+        }, (err) => {
+          console.log(err)
         });
       }, () => {
         console.log("Error in configuration")
