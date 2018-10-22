@@ -13,13 +13,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $arParams = json_decode($arParams);
     $qry = mysqli_query($conn , "INSERT INTO ads(image) VALUES ('$arParams->image')");
     if($qry){
-        echo json_encode(cmnresponse(TRUE,$response));
+        echo json_encode(cmnresponse(TRUE,null));
     }
     else{
-        echo json_encode(cmnresponse(FALSE,$response));
+        echo json_encode(cmnresponse(FALSE,null));
     }
 }
 else{
-    echo json_encode(cmnresponse(FALSE,$response));
+    echo json_encode(cmnresponse(FALSE,null));
 }
 ?>

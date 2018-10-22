@@ -61,33 +61,6 @@ export class ProfilePage {
     this.storage.clear();
     this.navCtrl.setRoot(LoginPage)
   }
-  uploadProfile(){
-    console.log()
-    this.takePhoto(0)
-  }
-  takePhoto(sourceType: number) {
-   
-    const options: CameraOptions = {
-      quality: 50,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true,
-      sourceType: sourceType,
-    }
-    this.camera.getPicture(options).then((imageData) => {
-      this.base64Image = 'data:image/jpeg;base64,' + imageData;
-      let data = new FormData();
-      data.append('image' , this.base64Image);
-      this.apiProvider.postData(data,'upload_picture.php').then(d=>{
-      })
-    }, (err) => {
-      this.profile_image = "../../assets/imgs/profile.svg"
-      // Handle error
-      this.presentToast(err)
-        console.log(err)
-    });
-  }
   presentToast(data) {
     let toast = this.toastCtrl.create({
       message: data,

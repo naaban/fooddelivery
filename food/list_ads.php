@@ -5,6 +5,7 @@ include 'cmnresponse.php';
 header('Content-type:application/json');
 header('Access-Control-Allow-Origin: *');
 $response = array();
+$response['data'] = array();
 if($_SERVER["REQUEST_METHOD"]=="GET"){
     $array_params=array(
         'post' => $_POST
@@ -14,8 +15,9 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
     $qry = mysqli_query($conn , "SELECT * FROM ads");
     if(mysqli_num_rows($qry) > 0){
         while($row = mysqli_fetch_array($qry)){
-            $response['data']['id'] = $row['id'];
-            $response['data']['image'] = $row['image'];
+            $response['tmp']['id'] = $row['id'];
+            $response['tmp']['image'] = $row['image'];
+            array_push($response['data'] , $response['tmp']);
         }
         echo json_encode(cmnresponse(TRUE,$response));
     }

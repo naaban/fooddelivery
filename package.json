@@ -20,7 +20,6 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
-    "@ionic-native/app-preferences": "^4.15.0",
     "@ionic-native/base64": "^4.15.0",
     "@ionic-native/camera": "^4.15.0",
     "@ionic-native/core": "^4.12.2",
@@ -39,7 +38,6 @@
     "com-badrit-base64": "^0.2.0",
     "cordova-android": "7.0.0",
     "cordova-js": "^4.2.4",
-    "cordova-plugin-app-preferences": "git+https://github.com/vash15/me.apla.cordova.app-preferences.git",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -75,7 +73,6 @@
       "cordova-plugin-camera": {},
       "cordova-sqlite-storage": {},
       "com-badrit-base64": {},
-      "cordova-plugin-app-preferences": {},
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },

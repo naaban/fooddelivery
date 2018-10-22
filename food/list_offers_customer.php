@@ -6,14 +6,14 @@ header('Content-type:application/json');
 header('Access-Control-Allow-Origin: *');
 $response = array();
 $response['data'] = array();
-if($_SERVER["REQUEST_METHOD"]=="POST"){
+if($_SERVER["REQUEST_METHOD"]=="GET"){
     $array_params=array(
         'post' => $_POST
     );
     $arParams = json_encode($array_params['post']);
     $arParams = json_decode($arParams);
-    $qry = mysqli_query($conn , "SELECT * FROM offers WHERE admin_id='$arParams->admin_id'");
-    if(mysqli_num_rows($qry) > 0){
+    $qry = mysqli_query($conn , "SELECT * FROM offers");
+    if(mysqli_num_rows($qry)){
         while($row = mysqli_fetch_array($qry)){
             $response['tmp']['id'] = $row['id'];
             $response['tmp']['image'] = $row['image'];

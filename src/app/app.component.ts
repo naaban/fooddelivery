@@ -23,7 +23,7 @@ import { ApiProvider } from '../providers/api/api';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = SuAdminHomePage;
+  rootPage:any = LoginPage;
   wallet: any;
   pages: Array<{title: string, component: any,name:string}>;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,public apiProvider: ApiProvider) {

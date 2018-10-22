@@ -10,12 +10,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ApiProvider {
 
-  adminUrl = "http://yourchoiz.com/fd/food/";
-
+  adminUrl = "http://192.168.1.106/fd/food/";
   constructor(public http: HttpClient) {
     console.log('Hello ApiProvider Provider');
   }
-
   postData(data,urlEnd){
     return new Promise((res)=>{
       console.log(this.adminUrl)
@@ -35,5 +33,4 @@ export class ApiProvider {
       })
     })
   }
-  
 }

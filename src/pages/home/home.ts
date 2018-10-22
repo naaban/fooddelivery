@@ -22,50 +22,50 @@ export class HomePage {
   rest: any;
   location: any;
   loc: any;
+  slideData : any;
   constructor(public navCtrl: NavController, public storage: Storage, public navParams: NavParams, public apiProvider: ApiProvider) {
     // this.getRest();
+    this.images = ["../../assets/imgs/rst1.jpg",
+    "../../assets/imgs/rst2.jpg",
+    "../../assets/imgs/rst3.jpg",
+    "../../assets/imgs/rst4.jpg",
+    "../../assets/imgs/rst5.jpg"];
+  // this.appPreferences.fetch("user_id").then(d => {
+  //   console.log(d)
+  // })
+  this.data = [
+    {
+      type_id: 1,
+      name: "Street Food",
+      image: "../../assets/imgs/street_food.jpg"
+    },
+    {
+      type_id: 2,
+      name: "Homely Food",
+      image: "../../assets/imgs/home_food.jpg"
+    },
+    {
+      type_id: 3,
+      name: "Resturant",
+      image: "../../assets/imgs/pizza.png"
+    },
+    {
+      type_id: 4,
+      name: "Groscery",
+      image: "../../assets/imgs/groscery.jpg"
+    },
+  {
+    type_id:5,
+    name: "Dry fruites and Vegitables",
+    image: "../../assets/imgs/fruits.jpg"
+  }]
+  this.getRest()
 
     this.storage.get("location").then(d => {
       console.log(d);
-      this.loc =d.locality
+      this.loc = d.locality
       this.location = d.locality + "," + d.administrativeArea;
-    })
-    this.images = ["../../assets/imgs/rst1.jpg",
-      "../../assets/imgs/rst2.jpg",
-      "../../assets/imgs/rst3.jpg",
-      "../../assets/imgs/rst4.jpg",
-      "../../assets/imgs/rst5.jpg"];
-    // this.appPreferences.fetch("user_id").then(d => {
-    //   console.log(d)
-    // })
-    this.data = [
-      {
-        type_id: 1,
-        name: "Street Food",
-        image: "../../assets/imgs/street_food.jpg"
-      },
-      {
-        type_id: 2,
-        name: "Homely Food",
-        image: "../../assets/imgs/home_food.jpg"
-      },
-      {
-        type_id: 3,
-        name: "Resturant",
-        image: "../../assets/imgs/pizza.png"
-      },
-      {
-        type_id: 4,
-        name: "Groscery",
-        image: "../../assets/imgs/groscery.jpg"
-      },
-    {
-      type_id:5,
-      name: "Dry fruites and Vegitables",
-      image: "../../assets/imgs/fruits.jpg"
-    }]
-    this.getRest()
-
+    
     this.foods = new FormData()
     this.foods.append('spl_offer', 1)
     this.foods.append('city',this.loc)  
@@ -74,11 +74,20 @@ export class HomePage {
       this.foods = this.foods.data
       console.log(this.foods.data)
     })
+  })
+    this.slideData = [{ image: "../../assets/imgs/banner1.jpg" }, { image: "../../assets/imgs/banner2.jpg" }, { image: "../../assets/imgs/banner3.jpg" }];
+    this.sliderAd()
   }
 
-  slideData = [{ image: "../../assets/imgs/banner1.jpg" }, { image: "../../assets/imgs/banner2.jpg" }, { image: "../../assets/imgs/banner3.jpg" }];
+ 
   profile() {
     this.navCtrl.push(ProfilePage);
+  }
+  sliderAd(){
+    this.apiProvider.getData('list_ads.php').then(d=>{
+      this.slideData =d ;
+      this.slideData = this.slideData.data
+    })
   }
   cart() {
     this.navCtrl.push(OrderPage , {wish : false});

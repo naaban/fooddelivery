@@ -13,19 +13,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $arParams = json_decode($arParams);
     $qry = mysqli_query($conn , "UPDATE ads SET image='$arParams->image' WHERE id='$arParams->id'");
     if($qry){
-        $response['data']['status'] =  1;
-        $response['data']['message'] = "Uploaded";
         echo json_encode(cmnresponse(TRUE,$response));
     }
     else{
-        $response['data']['status'] =  0;
-        $response['data']['message'] = "Something Went Wrong";
+       
         echo json_encode(cmnresponse(FALSE,$response));
     }
 }
 else{
-    $response['data']['status'] =  0;
-    $response['data']['message'] = "Something Went Wrong";
+
     echo json_encode(cmnresponse(FALSE,$response));
 }
 ?>

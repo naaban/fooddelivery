@@ -43,7 +43,7 @@ export class LogincustomComponent {
     this.storage.get('login_det').then(d => {
       if (d != null) {
         this.result = d
-        console.log(d)
+        console.log(this.result)
         if (this.result.user_id != null) {
           if (this.result.user_role == "admin") {
             if (this.result.su_admin) {
@@ -54,7 +54,7 @@ export class LogincustomComponent {
             else
               navCtrl.setRoot(ContactAdminPage)
           }
-          else if (this.result.user_role == "customer") this.navCtrl.setRoot(HomePage)
+          else if (this.result.user_role == "customer") {this.navCtrl.setRoot(HomePage)}
           else this.navCtrl.setRoot(ContactAdminPage)
         }
       }

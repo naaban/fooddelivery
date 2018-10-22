@@ -63,6 +63,7 @@ import { UploadAdsPage } from '../pages/upload-ads/upload-ads';
   imports: [
     BrowserModule,
     HttpClientModule,
+    
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],

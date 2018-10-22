@@ -25,8 +25,9 @@
 
 <ion-content>
   <ion-card class="ion-card">
+    <!-- <div [hidden] = "uploadImage" (click)="uploadProfile()" style="height:100px; padding-top: 20px">To upload image click here</div> -->
     <div>
-      <ion-img class="profile-image" (click)="uploadProfile()" src="{{this.profile_image}}"></ion-img>
+      <ion-img (click) = "uploadProfile()" class="profile-image"  src="{{this.resp}}"></ion-img>
     </div>
     <div class="profile-name">{{this.session.user_name}}
     </div>
@@ -42,4 +43,16 @@
       </div>
     </div>
   </ion-card>
+
+  <div style="text-align:center">
+    <button (click)="uploadOffer(0)" ion-button style="width:300px">
+      Upload Offer
+    </button>
+  </div>
+
+  <div *ngFor="let offer of offers" (click)="presentActionSheet(ad)">
+      <ion-card class="cards">
+        <img src="{{offer.image}}">
+      </ion-card>
+    </div>
 </ion-content>

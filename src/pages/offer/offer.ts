@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
 
 /**
  * Generated class for the OfferPage page.
@@ -16,7 +17,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class OfferPage {
   offers: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public apiProvider: ApiProvider) {
 
     this.offers = [{
       image: "../../assets/imgs/offer1.jpg"
@@ -33,10 +34,21 @@ export class OfferPage {
     {
       image: "../../assets/imgs/food5.jpg"
     }]
+    this.getOffers()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OfferPage');
   }
+
+getOffers(){
+  this.apiProvider.getData('list_offers_customer.php').then(d=>{
+    this.offers = d;
+    console.log(this.offers)
+    if(this.offers.status == 1){
+      this.offers = this.offers.data
+    }
+  })
+}
 
 }

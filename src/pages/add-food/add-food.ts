@@ -30,7 +30,7 @@ export class AddFoodPage {
   image: any;
   prod_type: any;
   login: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public camera: Camera , public formBuilder : FormBuilder,public apiProvider:ApiProvider,public base64 : Base64) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public toastCtrl: ToastController , public formBuilder : FormBuilder,public apiProvider:ApiProvider,public base64 : Base64, public camera: Camera) {
 
     this.params = this.formBuilder.group({
       foodname:  [''],

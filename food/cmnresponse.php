@@ -1,7 +1,7 @@
 <?php 
 
 $res = array();
-function cmnResponse($data,$response){
+function cmnResponse($data,$response) {
     if($data==TRUE){
         $res['status'] = 1;
         $res['message'] = "Success";
