@@ -33,6 +33,11 @@ export class HomePage {
   // this.appPreferences.fetch("user_id").then(d => {
   //   console.log(d)
   // })
+  this.storage.get("location").then(d=>{
+    this.loc = d.locality;
+    console.log(this.loc)
+    this.location = this.loc
+  })
   this.data = [
     {
       type_id: 1,
@@ -63,12 +68,10 @@ export class HomePage {
 
     this.storage.get("location").then(d => {
       console.log(d);
-      this.loc = d.locality
-      this.location = d.locality + "," + d.administrativeArea;
     
     this.foods = new FormData()
     this.foods.append('spl_offer', 1)
-    this.foods.append('city',this.loc)  
+    this.foods.append('city','Salem')  
         this.apiProvider.postData(this.foods, 'special_offer.php').then(d => {
       this.foods = d
       this.foods = this.foods.data
@@ -97,6 +100,8 @@ export class HomePage {
     this.navCtrl.push(FoodViewPage, {rest:res,resturant:false});
   }
   getRest() {
+    this.storage.get("location").then(d => {
+      console.log(d);
     let data = new FormData()
     data.append('city', 'Salem')
     this.apiProvider.postData(data,'list_resturant.php').then(d => {
@@ -104,6 +109,7 @@ export class HomePage {
       this.rest = this.results.data
       console.log(this.data);
     })
+  })
   }
   orderNow(result) {
     this.presentPopOver(result)

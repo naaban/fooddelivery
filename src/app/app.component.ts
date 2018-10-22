@@ -25,7 +25,7 @@ import { timer } from 'rxjs/observable/timer';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage:any = PaypalPage;
+  rootPage:any = LoginPage;
   wallet: any;
   showSplash = true;
   pages: Array<{title: string, component: any,name:string}>;

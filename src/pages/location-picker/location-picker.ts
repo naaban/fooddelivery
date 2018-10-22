@@ -27,23 +27,25 @@ export class LocationPickerPage {
   params: any;
   isVisible: boolean;
   map: any;
-  signup: any;
+  signup: any = false;
   constructor(public navCtrl: NavController, public storage: Storage, public alertCtrl: AlertController, public navParams: NavParams, public geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
-    this.setTimeOut();
+    this.getLocation();
     this.params = this.navParams.get('login');
     console.log(this.params)
     this.signup = this.navParams.get("signup")
     console.log(this.signup)
+
+    console.log('Hello Location Picker');
   }
 
 
-  setTimeOut() {
+  /*setTimeOut() {
     setTimeout(() => {
       this.getLocation(), {
-        duration: 200, // The length in milliseconds the animation should take.
+        duration: 400, // The length in milliseconds the animation should take.
       };
     }, 2000);
-  }
+  }*/
   getLocation() {
     if (this.signup) {
       this.page = RegisterPage;
@@ -55,19 +57,14 @@ export class LocationPickerPage {
       this.page = AdminHomePage
     }
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp.coords)
+      console.log(resp)
       if (resp != null) {
         this.getGeoCoder(resp.coords.latitude, resp.coords.longitude)
         this.navCtrl.setRoot(this.page);
       }
-      else {
-        this.setTimeOut();
-      }
-
     }).catch((error) => {
       this.isVisible = false
       console.log('Error getting location', error);
-      this.setTimeOut()
     });
   }
   getGeoCoder(lat, lon) {
@@ -76,7 +73,7 @@ export class LocationPickerPage {
       maxResults: 5
     };
     this.nativeGeocoder.reverseGeocode(lat, lon, options)
-      .then((result: NativeGeocoderReverseResult[]) => this.storage.set("location", result[0]))
+      .then((result: NativeGeocoderReverseResult[]) => {this.storage.set("location", result[0]); console.log(result[0])})
       .catch((error: any) => this.isVisible = false);
   }
 

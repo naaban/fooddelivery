@@ -77,7 +77,7 @@ export class LogincustomComponent {
             this.data = this.result.data
             this.isAdmin = false
             this.storage.set("login_det", this.result.data);
-            this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin })
+            this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin , "signup":false })
             // this.appPreferences.store("user_id" , this.data.user_id)
             //this.navCtrl.setRoot(HomePage)
           }
@@ -107,7 +107,7 @@ export class LogincustomComponent {
             else if (resp.user_status) {
               this.loading.dismiss();
               this.storage.set("login_det", this.result.data);
-              this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin })
+              this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin,"signup": false })
             }
             else {
               this.storage.set("login_det", this.result.data);
