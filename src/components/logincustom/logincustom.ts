@@ -31,6 +31,7 @@ export class LogincustomComponent {
   data: any;
   session: any;
   result: any;
+  slides: any;
   isAdmin: boolean;
   constructor(public loadingCtrl: LoadingController, public storage: Storage, public navParams: NavParams, public navCtrl: NavController, public toastCtrl: ToastController,
     public formBuilder: FormBuilder, public apiProvider: ApiProvider) {
@@ -40,6 +41,7 @@ export class LogincustomComponent {
       username: ['', Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
       pass: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(30)])]
     })
+    
     this.storage.get('login_det').then(d => {
       if (d != null) {
         this.result = d
@@ -52,9 +54,11 @@ export class LogincustomComponent {
             else if (this.result.user_status)
               this.navCtrl.setRoot(AdminHomePage)
             else
-              navCtrl.setRoot(ContactAdminPage)
+              this.navCtrl.setRoot(ContactAdminPage)
           }
-          else if (this.result.user_role == "customer") {this.navCtrl.setRoot(HomePage)}
+          else if (this.result.user_role == "customer") {
+             this.navCtrl.setRoot(HomePage) 
+            }
           else this.navCtrl.setRoot(ContactAdminPage)
         }
       }
@@ -69,23 +73,25 @@ export class LogincustomComponent {
         data.append('password', this.params.value.pass)
         data.append('role', this.login)
         console.log(this.params.value.username + "  " + this.params.value.password + "  " + this.login)
-        this.apiProvider.postData(data, 'login.php').then(d => {
-          this.result = d
-          console.log(this.result);
-          if (this.result.status == 1) {
-            this.loading.dismiss();
-            this.data = this.result.data
-            this.isAdmin = false
-            this.storage.set("login_det", this.result.data);
-            this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin , "signup":false })
-            // this.appPreferences.store("user_id" , this.data.user_id)
-            //this.navCtrl.setRoot(HomePage)
-          }
-          else {
+        this.loading.present().then(() => {
+          this.apiProvider.postData(data, 'login.php').then(d => {
+            this.result = d
             console.log(this.result);
-            this.loading.dismiss();
-            this.presentToast('Incorrect Email Id or Password')
-          }
+            if (this.result.status == 1) {
+              this.loading.dismiss();
+              this.data = this.result.data
+              this.isAdmin = false
+              this.storage.set("login_det", this.result.data);
+              this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin, "signup": false })
+              // this.appPreferences.store("user_id" , this.data.user_id)
+              //this.navCtrl.setRoot(HomePage)
+            }
+            else {
+              console.log(this.result);
+              this.loading.dismiss();
+              this.presentToast('Incorrect Email Id or Password')
+            }
+          })
         })
       }
       else if (this.login == "resturant") {
@@ -93,32 +99,34 @@ export class LogincustomComponent {
         data.append('email', this.params.value.username)
         data.append('password', this.params.value.pass)
         data.append('role', this.login)
-        this.apiProvider.postData(data, 'login.php').then(d => {
-          this.result = d
-          this.isAdmin = true
-          console.log(this.result);
-          if (this.result.status == 1) {
-            let resp = this.result.data
-            if (resp.su_admin) {
-              this.loading.dismiss()
-              this.storage.set("login_det", this.result.data);
-              this.navCtrl.setRoot(SuAdminHomePage)
-            }
-            else if (resp.user_status) {
-              this.loading.dismiss();
-              this.storage.set("login_det", this.result.data);
-              this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin,"signup": false })
+        this.loading.present().then(() => {
+          this.apiProvider.postData(data, 'login.php').then(d => {
+            this.result = d
+            this.isAdmin = true
+            console.log(this.result);
+            if (this.result.status == 1) {
+              let resp = this.result.data
+              if (resp.su_admin) {
+                this.loading.dismiss()
+                this.storage.set("login_det", this.result.data);
+                this.navCtrl.setRoot(SuAdminHomePage)
+              }
+              else if (resp.user_status) {
+                this.loading.dismiss();
+                this.storage.set("login_det", this.result.data);
+                this.navCtrl.setRoot(LocationPickerPage, { "login": this.isAdmin, "signup": false })
+              }
+              else {
+                this.storage.set("login_det", this.result.data);
+                this.navCtrl.setRoot(ContactAdminPage)
+              }
             }
             else {
-              this.storage.set("login_det", this.result.data);
-              this.navCtrl.setRoot(ContactAdminPage)
+              console.log(this.result);
+              this.loading.dismiss();
+              this.presentToast('Incorrect Email Id or Password')
             }
-          }
-          else {
-            console.log(this.result);
-            this.loading.dismiss();
-            this.presentToast('Incorrect Email Id or Password')
-          }
+          })
         })
       }
     }
@@ -127,7 +135,7 @@ export class LogincustomComponent {
     }
   }
   register() {
-    this.navCtrl.push(LocationPickerPage, { "signup": true });
+    this.navCtrl.push(RegisterPage);
   }
 
   presentLoadingCustom() {
@@ -145,9 +153,8 @@ export class LogincustomComponent {
        </div>`,
       duration: 500
     });
-    this.loading.present();
   }
-
+ 
   presentToast(message) {
     let toast = this.toastCtrl.create({
       message: message,

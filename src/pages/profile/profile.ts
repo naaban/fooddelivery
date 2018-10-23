@@ -35,10 +35,7 @@ export class ProfilePage {
     this.session = this.storage.get("login_det").then(d=>{
       this.session = d
       console.log(d)
-
     })
-
-
   }
   getWalletAmt(){
     let data = new FormData();
@@ -53,10 +50,8 @@ export class ProfilePage {
     })
   }
   ionViewDidLoad() {
-    
     console.log('ionViewDidLoad ProfilePage');
   }
-
   logout(){
     this.storage.clear();
     this.navCtrl.setRoot(LoginPage)

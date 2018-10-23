@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
+import {Storage} from '@ionic/storage'
 
 /**
  * Generated class for the OfferPage page.
@@ -17,23 +18,7 @@ import { ApiProvider } from '../../providers/api/api';
 export class OfferPage {
   offers: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public apiProvider: ApiProvider) {
-
-    this.offers = [{
-      image: "../../assets/imgs/offer1.jpg"
-    },
-    {
-      image: "../../assets/imgs/offer2.jpg"
-    },
-    {
-      image: "../../assets/imgs/offer3.jpg"
-    },
-    {
-      image: "../../assets/imgs/offer4.jpg"
-    },
-    {
-      image: "../../assets/imgs/food5.jpg"
-    }]
+  constructor(public navCtrl: NavController, public storage : Storage,public navParams: NavParams,public apiProvider: ApiProvider) {
     this.getOffers()
   }
 
@@ -42,13 +27,16 @@ export class OfferPage {
   }
 
 getOffers(){
-  this.apiProvider.getData('list_offers_customer.php').then(d=>{
-    this.offers = d;
-    console.log(this.offers)
-    if(this.offers.status == 1){
-      this.offers = this.offers.data
-    }
+  this.storage.get('location').then(d=>{
+    this.apiProvider.getData('list_offers_customer.php?city='+d.locality).then(d=>{
+      this.offers = d;
+      console.log(this.offers)
+      if(this.offers.status == 1){
+        this.offers = this.offers.data
+      }
+    })
   })
+ 
 }
 
 }

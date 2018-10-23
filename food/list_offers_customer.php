@@ -8,11 +8,11 @@ $response = array();
 $response['data'] = array();
 if($_SERVER["REQUEST_METHOD"]=="GET"){
     $array_params=array(
-        'post' => $_POST
+        'post' => $_GET
     );
     $arParams = json_encode($array_params['post']);
     $arParams = json_decode($arParams);
-    $qry = mysqli_query($conn , "SELECT * FROM offers");
+    $qry = mysqli_query($conn , "SELECT offs.image , offs.id FROM offers as offs JOIN admin_reg as adm ON adm.id=offs.admin_id WHERE city = '$arParams->city'");
     if(mysqli_num_rows($qry)){
         while($row = mysqli_fetch_array($qry)){
             $response['tmp']['id'] = $row['id'];

@@ -4,6 +4,8 @@ import { LoginPage } from '../login/login';
 import { ApiProvider } from '../../providers/api/api';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Storage} from '@ionic/storage'
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 
 /**
  * Generated class for the RegisterPage page.
@@ -23,7 +25,9 @@ export class RegisterPage {
   params: FormGroup;
   result: any;
   location: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public apiProvider: ApiProvider, public formBuilder: FormBuilder,public storage : Storage ) {
+  loading : any;
+  loc : any;
+  constructor(public navCtrl: NavController, public geolocation : Geolocation,public nativeGeocoder : NativeGeocoder,public navParams: NavParams, public loadingCtrl: LoadingController, public toastCtrl: ToastController, public apiProvider: ApiProvider, public formBuilder: FormBuilder,public storage : Storage ) {
     this.params = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
       pass: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(30)])],
@@ -40,7 +44,7 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
   presentLoadingCustom() {
-    let loading = this.loadingCtrl.create({
+    this.loading = this.loadingCtrl.create({
       spinner: 'hide',
       content: `
       <div >
@@ -55,7 +59,7 @@ export class RegisterPage {
        </div>`,
     });
 
-    loading.present();
+    this.loading.present();
   }
   presentToast(data) {
     let toast = this.toastCtrl.create({
@@ -69,7 +73,27 @@ export class RegisterPage {
 
     toast.present();
   }
+  getLocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log(resp)
+      this.getGeoCoder(resp.coords.latitude, resp.coords.longitude)
+    }).catch((error) => {
+
+      console.log('Error getting location', error);
+    });
+  }
+  getGeoCoder(lat, lon) {
+    this.presentLoadingCustom()
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5
+    };
+    this.nativeGeocoder.reverseGeocode(lat, lon, options)
+      .then((result: NativeGeocoderReverseResult[]) => this.storage.set("location" , result[0]))
+      .catch((error: any) => console.log(error));
+  }
   register() {
+    this.getLocation()
     if (this.params.valid) {
       if (this.login != null) {
         if (this.login == 'customer') {
@@ -83,11 +107,16 @@ export class RegisterPage {
             this.result = d
             console.log(this.result)
             if (this.result.status == 1) {
+              this.loading.dismiss()
               this.navCtrl.setRoot(LoginPage)
               this.presentToast('Successfully Registered Please Login')
             }
             
-            else if (this.result.status == 2) { this.presentToast('User Already Exists.. Please Login'); this.navCtrl.setRoot(LoginPage) }
+            else if (this.result.status == 2) { 
+              this.presentToast('User Already Exists.. Please Login');
+               this.navCtrl.setRoot(LoginPage) 
+              this.loading.dismiss()
+            }
             else
               this.presentToast('Incorrect Email or Password')
           })
@@ -100,21 +129,25 @@ export class RegisterPage {
             data.append('name', this.params.value.fullname)
             data.append('email', this.params.value.username)
             data.append('password', this.params.value.pass)
-            data.append('city' , d.city)
-            data.append('state' , d.state)
+            data.append('city' , d.locality)
+            data.append('state' , d.administrativeArea)
             this.apiProvider.postData(data, 'register.php').then(d => {
               this.result = d
               console.log(this.result)
               if (this.result.status == 1) {
+                this.loading.dismiss()
                 this.navCtrl.setRoot(LoginPage)
                 this.presentToast('Successfully Registered Please Login')
               }
-              else if (this.result.status == 2) { this.presentToast('User Already Exists.. Please Login'); this.navCtrl.setRoot(LoginPage) }
+              else if (this.result.status == 2) { 
+                  this.loading.dismiss()
+                  this.presentToast('User Already Exists.. Please Login'); 
+                  this.navCtrl.setRoot(LoginPage) 
+              }
               else
                 this.presentToast('Incorrect Email or Password')
             })
           })
-         
         }
       }
       else {

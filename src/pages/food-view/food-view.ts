@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, Loading, LoadingController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { OrderPopoverPage } from '../order-popover/order-popover';
+import{ Storage } from '@ionic/storage' 
 
 /**
  * Generated class for the FoodViewPage page.
@@ -24,7 +25,9 @@ export class FoodViewPage {
   data: any;
   type: any;
   resturant : any;
-  constructor(public navCtrl: NavController,public navParams: NavParams, public apiProvider: ApiProvider,public popOverCtrl:PopoverController) {
+  loading : Loading;
+  slideData:  any;
+  constructor(public navCtrl: NavController,public loadingCtrl : LoadingController,public storage : Storage,public navParams: NavParams, public apiProvider: ApiProvider,public popOverCtrl:PopoverController) {
 
     this.rest = this.navParams.get("rest");
     this.resturant = this.navParams.get("resturant")
@@ -34,112 +37,42 @@ export class FoodViewPage {
     else
     this.getProductAsType();
     // this.getData()
-
-  }
-
-  getProductAsType(){
-    let data = new FormData;
-    data.append('product_type', this.rest.type_id)
-    data.append('city','Salem')
-    console.log(data)
-    this.apiProvider.postData(data, 'list_product_astype.php').then(d => {
-      this.results = d
+    this.apiProvider.getData("list_ads.php").then(d=>{
+      this.slideData = d;
       console.log(d)
-      this.data = this.results.data
+      this.slideData = this.slideData.data
     })
+  }
+  getProductAsType(){
+    this.storage.get("login_det").then(d=>{
+      let data = new FormData;
+      console.log(d.locality)
+      data.append('product_type', this.rest.type_id)
+      data.append('city',d.locality)
+      console.log(data)
+      this.apiProvider.postData(data, 'list_product_astype.php').then(d => {
+        this.results = d
+        console.log(d)
+        this.data = this.results.data
+      })
+    })
+    
   }
   getRestProducts() {
-    let data = new FormData;
-    data.append('admin_id', this.rest.id)
-    data.append('city','Salem')
-    this.apiProvider.postData(data, 'list_product.php').then(d => {
-      this.results = d
-      this.data = this.results.data
+    this.presentLoadingCustom()
+    this.loading.present().then(()=>{
+      let data = new FormData;
+      data.append('admin_id', this.rest.id)
+      this.apiProvider.postData(data, 'list_product.php').then(d => {
+        this.results = d
+        if(this.results.status == 1)
+        this.loading.dismiss()
+        this.data = this.results.data
+      })
     })
+    
   }
-  getData() {
-    if (this.id == 1) {
-      this.data = [{
-        name: "Pani Poori",
-        image: "../../assets/imgs/pani_poori.jpg",
-        price: "Rs.20/qty",
-        qty: "100"
-      },
-      {
-        name: "Masala Poori",
-        image: "../../assets/imgs/masal_poori.jpg",
-        price: "Rs.25/qty",
-        qty: "100"
-      }]
-    }
-    else if (this.id == 2) {
-      this.data = [{
-        name: "Idly",
-        image: "../../assets/imgs/idly.jpg",
-        price: "Rs.10",
-        qty: "250"
-      },
-      {
-        name: "Poori",
-        image: "../../assets/imgs/poori.jpg",
-        price: "Rs.25",
-        qty: "100"
-      },
-      {
-        name: "Chapathi",
-        image: "../../assets/imgs/chappathi.jpg",
-        price: "Rs.20",
-        qty: "100"
-      },
-      {
-        name: "Briyani",
-        image: "../../assets/imgs/briyani.jpg",
-        price: "Rs.90",
-        qty: "50"
-      }]
-    }
-    else if (this.id == 3) {
-      this.data = [{
-        name: "Pizza",
-        image: "../../assets/imgs/pizza.jpg",
-        price: "Rs.120",
-        qty: "250"
-      },
-      {
-        name: "Burger",
-        image: "../../assets/imgs/burger.jpg",
-        price: "Rs.50",
-        qty: "100"
-      }]
-    }
-    else if (this.id == 4) {
-      this.data = [{
-        name: "Apple",
-        image: "../../assets/imgs/apple.jpg",
-        price: "Rs.120/kg",
-        qty: "250Kgs"
-      },
-      {
-        name: "Grapes",
-        image: "../../assets/imgs/graps.jpg",
-        price: "Rs.25/kg",
-        qty: "100Kgs"
-      },
-      {
-        name: "Mango",
-        image: "../../assets/imgs/mango.jpg",
-        price: "Rs.60/kg",
-        qty: "100Kgs"
-      },
-      {
-        name: "Water Melon",
-        image: "../../assets/imgs/watermelon.jpg",
-        price: "Rs.90/pcs",
-        qty: "50"
-      }]
-    }
-  }
-  slideData = [{ image: "../../assets/imgs/banner1.jpg" }, { image: "../../assets/imgs/banner2.jpg" }, { image: "../../assets/imgs/banner3.jpg" }];
+  // slideData = [{ image: "../../assets/imgs/banner1.jpg" }, { image: "../../assets/imgs/banner2.jpg" }, { image: "../../assets/imgs/banner3.jpg" }];
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FoodViewPage');
@@ -153,5 +86,21 @@ export class FoodViewPage {
     this.navCtrl.push(OrderPopoverPage , {"result" : result})
     // let popOver = this.popOverCtrl.create(OrderPopoverPage, { "result": result })
     // popOver.present();
+  }
+  presentLoadingCustom() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: `<div >
+       <ion-row class="loadingBar">
+         <ion-col>
+         <img class="image" src="../../assets/imgs/loginlogo.svg" alt="" width="120" height="120">
+         </ion-col>
+         <ion-col style="color:#000">
+           Loading Please Wait..
+         </ion-col>
+       </ion-row>
+       </div>`,
+      duration: 500
+    });
   }
 }

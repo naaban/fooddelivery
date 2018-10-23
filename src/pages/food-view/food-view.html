@@ -5,13 +5,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="slider">
-    <ion-slides autoplay="10" loop="true" speed="2500">
-      <ion-slide *ngFor="let slide of slideData">
-        <img src="{{slide.image}}"/>
-      </ion-slide>
-    </ion-slides>
-  </ion-card>
+    <ion-card *ngIf="slideData && slideData.length" class="slider" autoplay="5000" class="slideroption" pager="true"   loop="true" speed="300">
+        <ion-slides autoplay="10" loop="true" speed="2500">
+          <ion-slide *ngFor="let slide of this.slideData">
+            <img src="{{slide.image}}" />
+          </ion-slide>
+        </ion-slides>
+      </ion-card>
   <div margin>
     <div *ngFor="let result of data" class="column" (click)="orderNow(result)">
       <ion-row>

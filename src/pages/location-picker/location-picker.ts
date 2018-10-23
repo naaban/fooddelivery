@@ -7,6 +7,7 @@ import { AdminHomePage } from '../admin-home/admin-home';
 import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Observable';
 import { RegisterPage } from '../register/register';
+import { ApiProvider } from '../../providers/api/api';
 
 
 
@@ -28,24 +29,31 @@ export class LocationPickerPage {
   isVisible: boolean;
   map: any;
   signup: any = false;
-  constructor(public navCtrl: NavController, public storage: Storage, public alertCtrl: AlertController, public navParams: NavParams, public geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
+  slides : any;
+  constructor(public navCtrl: NavController,public apiProvider : ApiProvider, public storage: Storage, public alertCtrl: AlertController, public navParams: NavParams, public geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
     this.getLocation();
     this.params = this.navParams.get('login');
     console.log(this.params)
     this.signup = this.navParams.get("signup")
     console.log(this.signup)
-
+    this.sliderAd()
     console.log('Hello Location Picker');
   }
-
-
-  /*setTimeOut() {
+  setTimeOut() {
     setTimeout(() => {
       this.getLocation(), {
         duration: 400, // The length in milliseconds the animation should take.
       };
     }, 2000);
-  }*/
+  }
+  sliderAd(){
+    this.apiProvider.getData('list_ads.php').then(d => {
+      this.slides = d;
+      this.slides = this.slides.data
+      console.log(this.slides)
+      this.storage.set("slides" , this.slides)
+    })
+  }
   getLocation() {
     if (this.signup) {
       this.page = RegisterPage;
@@ -58,10 +66,8 @@ export class LocationPickerPage {
     }
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log(resp)
-      if (resp != null) {
         this.getGeoCoder(resp.coords.latitude, resp.coords.longitude)
         this.navCtrl.setRoot(this.page);
-      }
     }).catch((error) => {
       this.isVisible = false
       console.log('Error getting location', error);

@@ -44,11 +44,11 @@ export class MyApp {
       ];
   
       statusBar.styleLightContent();
-      splashScreen.hide();
-      timer(3000).subscribe(() => this.showSplash = false) 
+       splashScreen.hide();
+      //  timer(3000).subscribe(() => this.showSplash = false) 
       
     });
-    this.getWalletAmt()
+    // this.getWalletAmt()
   }
   openPage(page) {
     // Reset the content nav to have just this page
